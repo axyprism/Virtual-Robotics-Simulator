@@ -1,2 +1,2 @@
-# virtual-robotics-simulator
+# Virtual Robotics Simulator
 

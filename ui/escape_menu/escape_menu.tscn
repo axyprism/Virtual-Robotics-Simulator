@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://wra2xieb1da5"]
+
+[ext_resource type="Script" uid="uid://d1n868ldeei2k" path="res://ui/escape_menu/escape_menu.gd" id="1_7i1hi"]
+
+[node name="EscapeMenu" type="CanvasLayer" unique_id=776235805]
+script = ExtResource("1_7i1hi")
+
+[node name="Panel" type="Panel" parent="." unique_id=543463268]
+offset_right = 409.0
+offset_bottom = 398.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=360336146]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.998
+anchor_bottom = 1.0
+offset_right = -0.18200684
+offset_bottom = -1.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=758194884]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=103019065]
+layout_mode = 2
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1176000938]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tab_0/title = "Connect"
+tab_1/title = "Robots"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=448062618]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_tab_index = 0
+metadata/_tab_name = "Connect"
+
+[node name="ConnectTab" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer" unique_id=1356887052]
+layout_mode = 2
+size_flags_vertical = 0
+accessibility_name = "Connect"
+
+[node name="StatusLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1105787223]
+layout_mode = 2
+text = "Status"
+
+[node name="PortField" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=351647442]
+layout_mode = 2
+placeholder_text = "Port (default 7777)"
+
+[node name="HostButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1338548281]
+layout_mode = 2
+text = "Host"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1545000630]
+layout_mode = 2
+
+[node name="IPField" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1353139761]
+layout_mode = 2
+placeholder_text = "IP Address"
+
+[node name="JoinButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=661718514]
+layout_mode = 2
+text = "Join"
+
+[node name="DisconnectButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=325940328]
+layout_mode = 2
+text = "Disconnect"
+
+[node name="RobotsTab" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=912806873]
+visible = false
+layout_mode = 2
+accessibility_name = "Spawn Robot"
+metadata/_tab_index = 1
+metadata/_tab_name = "Robots"
+
+[node name="RobotListContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer/RobotsTab" unique_id=344585206]
+layout_mode = 2
+
+[node name="SpawnButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/RobotsTab" unique_id=1575792505]
+layout_mode = 2
+text = "Spawn"
+
+[node name="CloseHint" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=255346433]
+layout_mode = 2
+text = "Press Esc to close"
+horizontal_alignment = 1
