@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://xfmnyppmijlr"]
+
+[ext_resource type="Script" uid="uid://lls8qsubkpsk" path="res://player/VR/vr_player.gd" id="1_cxi7q"]
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="2_ti18u"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="3_bkmt7"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="4_lbyey"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7jktm"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4flbx"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Neck:rotation")
+properties/2/spawn = false
+properties/2/replication_mode = 1
+
+[node name="Player" type="XROrigin3D" unique_id=1198552087]
+script = ExtResource("1_cxi7q")
+
+[node name="RemoteVisual" type="MeshInstance3D" parent="." unique_id=1827402276]
+mesh = SubResource("CapsuleMesh_7jktm")
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=140861656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5214751, 0)
+current = true
+
+[node name="Sync" type="MultiplayerSynchronizer" parent="." unique_id=919583990]
+replication_config = SubResource("SceneReplicationConfig_4flbx")
+
+[node name="LeftController" type="XRController3D" parent="." unique_id=1126497955]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftController" unique_id=1975334061 instance=ExtResource("2_ti18u")]
+
+[node name="FunctionPointer" parent="LeftController" unique_id=297632963 instance=ExtResource("3_bkmt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.05, -0.1)
+show_laser = 2
+laser_length = 1
+
+[node name="RightController" type="XRController3D" parent="." unique_id=125581654]
+tracker = &"left_hand"
+
+[node name="RightHand" parent="RightController" unique_id=259505218 instance=ExtResource("4_lbyey")]
+
+[node name="FunctionPointer" parent="RightController" unique_id=425303577 instance=ExtResource("3_bkmt7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.05, -0.1)
+show_laser = 2
+laser_length = 1

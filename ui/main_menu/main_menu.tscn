@@ -1,0 +1,216 @@
+[gd_scene format=3 uid="uid://bkc05rh417d3p"]
+
+[ext_resource type="Script" uid="uid://d3pxcasf78i6h" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu8pm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.20784314, 0.6)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruuq5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[node name="MainMenu" type="Control" unique_id=519876228]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uhj5c")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1235352623]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6645101, 0.66451, 0.66451, 1)
+
+[node name="StartMenu" type="PanelContainer" parent="." unique_id=1946924473]
+visible = false
+custom_minimum_size = Vector2(500, 300)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.2
+anchor_right = 0.84
+anchor_bottom = 0.8
+offset_left = 0.019958496
+offset_right = -0.020019531
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
+
+[node name="MarginContainer" type="MarginContainer" parent="StartMenu" unique_id=737032783]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="HBoxContainer" type="VBoxContainer" parent="StartMenu/MarginContainer" unique_id=1253310970]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=232057366]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SingleplayerButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer/HBoxContainer" unique_id=869398203]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+text = "Singleplayer"
+
+[node name="MultiplayerButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer/HBoxContainer" unique_id=2039095345]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+text = "Multiplayer
+"
+
+[node name="OptionsButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=837653137]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=730407241]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+text = "Quit"
+
+[node name="GameSelect" type="PanelContainer" parent="." unique_id=2060972773]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameSelect" unique_id=584034517]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameSelect/MarginContainer" unique_id=1919889308]
+layout_mode = 2
+
+[node name="ItemList" type="ScrollContainer" parent="GameSelect/MarginContainer/VBoxContainer" unique_id=213316937]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameSelect/MarginContainer/VBoxContainer/ItemList" unique_id=1642409674]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="GameSelect/MarginContainer/VBoxContainer" unique_id=908945191]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[node name="MultiplayerScreen" type="PanelContainer" parent="." unique_id=1231518021]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
+
+[node name="MarginContainer" type="MarginContainer" parent="MultiplayerScreen" unique_id=77015920]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer" unique_id=1713074035]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=756324780]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1384933351]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1189221894]
+layout_mode = 2
+text = "Host on Local Network"
+
+[node name="PortField" type="LineEdit" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=49412833]
+layout_mode = 2
+placeholder_text = "Port (default 7777)"
+
+[node name="HostButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1192074341]
+layout_mode = 2
+text = "Host"
+
+[node name="HSeparator" type="HSeparator" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1835208775]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1291261369]
+layout_mode = 2
+text = "Join Via IP"
+
+[node name="IPField" type="LineEdit" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1525020062]
+layout_mode = 2
+placeholder_text = "IP Address"
+
+[node name="JoinButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=691942699]
+layout_mode = 2
+text = "Join"
+
+[node name="VSeparator" type="VSeparator" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1134275909]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1249603046]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=106720065]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Find Servers Online"
+
+[node name="ServerContainer" type="PanelContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=928225366]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=1478969654]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"

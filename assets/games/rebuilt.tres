@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="GameData" format=3 uid="uid://cvvltw16a0gy5"]
+
+[ext_resource type="Script" uid="uid://bmxv8wcd54v27" path="res://scripts/systems/games/game_data.gd" id="1_j7djt"]
+[ext_resource type="PackedScene" uid="uid://caa7lu7360nvy" path="res://assets/games/scenes/rebuilt_field.tscn" id="1_xs6tx"]
+[ext_resource type="Texture2D" uid="uid://1uvhro7m7ahf" path="res://assets/images/rebuilt thumbnail.png" id="3_ubask"]
+
+[resource]
+script = ExtResource("1_j7djt")
+game_name = "Rebuilt"
+thumbnail = ExtResource("3_ubask")
+field_scene = ExtResource("1_xs6tx")
+metadata/_custom_type_script = "uid://bmxv8wcd54v27"

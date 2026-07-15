@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://beslfl5obkmu0"]
+
+[ext_resource type="Script" uid="uid://c03ojaxb3nuwm" path="res://ui/VR/vr_ui.gd" id="1_xh2br"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xh2br"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwi8h"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_xh2br")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lmi47"]
+
+[node name="VrUi" type="Node3D" unique_id=516451386]
+script = ExtResource("1_xh2br")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=951440616]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=630423981]
+material_override = SubResource("StandardMaterial3D_cwi8h")
+mesh = SubResource("QuadMesh_lmi47")

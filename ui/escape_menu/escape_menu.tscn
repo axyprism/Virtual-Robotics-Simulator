@@ -55,25 +55,6 @@ accessibility_name = "Connect"
 layout_mode = 2
 text = "Status"
 
-[node name="PortField" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=351647442]
-layout_mode = 2
-placeholder_text = "Port (default 7777)"
-
-[node name="HostButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1338548281]
-layout_mode = 2
-text = "Host"
-
-[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1545000630]
-layout_mode = 2
-
-[node name="IPField" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=1353139761]
-layout_mode = 2
-placeholder_text = "IP Address"
-
-[node name="JoinButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=661718514]
-layout_mode = 2
-text = "Join"
-
 [node name="DisconnectButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab" unique_id=325940328]
 layout_mode = 2
 text = "Disconnect"

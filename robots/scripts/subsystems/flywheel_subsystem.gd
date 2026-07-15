@@ -1,28 +1,35 @@
 class_name FlywheelSubsystem
 extends Subsystem
 
-## The Node3D that visually spins (e.g. a wheel mesh)
 @export var wheel_visual_path: NodePath
 @onready var wheel_visual: Node3D = get_node(wheel_visual_path)
-
-## How fast the flywheel accelerates/decelerates (higher = snappier)
 @export var spin_up_rate: float = 3.0
 @export var spin_down_rate: float = 2.0
-
-## Tolerance to consider "at speed" (0.0 - 1.0, as a fraction of target)
+@export var launch_force: float = 20.0
+@export var contact_zones: Array[Area3D] = []
 @export var at_speed_tolerance: float = 0.05
-
-## Max visual spin speed in radians per second (cosmetic only)
 @export var max_visual_spin_rps: float = 40.0
 
-## Current normalized speed (0.0 = stopped, 1.0 = full speed)
 var current_speed: float = 0.0
 
 var _target_speed: float = 0.0
 var _visual_spin: float = 0.0
 var _running: bool = false
 
-# --- Public API ---
+func _ready() -> void:
+	for i in contact_zones:
+		i.body_entered.connect(_on_game_piece_contact)
+	
+func _on_game_piece_contact(body: Node) -> void:
+	if not body.is_in_group("game_piece"):
+		return
+	if not is_spinning():
+		return
+	var rb := body as RigidBody3D
+	if not rb:
+		return
+	var direction = self.global_transform.basis.z
+	rb.apply_central_impulse(direction * launch_force * current_speed)
 
 func set_target_speed(normalized: float) -> void:
 	_target_speed = clampf(normalized, 0.0, 1.0)
@@ -35,8 +42,6 @@ func spin_down() -> void:
 	_running = false
 	set_target_speed(0.0)
 
-## Returns true when the flywheel is within tolerance of its target speed
-## and the target is not zero (i.e. it's actually spun up, not spun down)
 func at_speed() -> bool:
 	if _target_speed < 0.01:
 		return false
@@ -45,15 +50,13 @@ func at_speed() -> bool:
 func is_spinning() -> bool:
 	return current_speed > 0.01
 
-# --- Internal ---
-
 func update(delta: float) -> void:
 	var rate := spin_up_rate if current_speed < _target_speed else spin_down_rate
 	current_speed = move_toward(current_speed, _target_speed, rate * delta)
 
 	if wheel_visual:
 		_visual_spin += current_speed * max_visual_spin_rps * delta
-		wheel_visual.rotation.z = _visual_spin
+		wheel_visual.rotation.x = _visual_spin
 
 func run_default(delta: float) -> void:
 	spin_down()

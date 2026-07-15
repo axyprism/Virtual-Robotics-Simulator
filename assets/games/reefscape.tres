@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameData" format=3 uid="uid://d4apxdqjk8bbi"]
+
+[ext_resource type="Script" uid="uid://bmxv8wcd54v27" path="res://scripts/systems/games/game_data.gd" id="1_34yra"]
+[ext_resource type="Texture2D" uid="uid://deuy4blk3dhot" path="res://assets/images/reefscape thumbnail.png" id="2_en3pi"]
+
+[resource]
+script = ExtResource("1_34yra")
+game_name = "Reefscape"
+thumbnail = ExtResource("2_en3pi")
+metadata/_custom_type_script = "uid://bmxv8wcd54v27"

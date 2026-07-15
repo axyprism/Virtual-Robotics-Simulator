@@ -1,24 +1,22 @@
 class_name SubsystemManager
 extends Node
 
-## Flat list of ALL subsystems (including nested ones) for the scheduler to query
+const SYNC_INTERVAL := 0.05
+
 var _all_subsystems: Array[Subsystem] = []
+var _sync_timer: float = 0.0
 
 func _ready() -> void:
-	# Discover top-level Subsystem children; they recurse into their own children
 	for child in get_children():
-		if child is Subsystem:
-			_register_tree(child)
-
-	# Register with the global scheduler so it knows this robot exists
+		_register_tree(child)
 	CommandScheduler.register_manager(self)
 
-func _register_tree(subsystem: Subsystem) -> void:
-	_all_subsystems.append(subsystem)
-	subsystem._setup(self)
-	for child in subsystem.get_children():
-		if child is Subsystem:
-			_register_tree(child)
+func _register_tree(node: Node) -> void:
+	if node is Subsystem:
+		_all_subsystems.append(node)
+		node._setup(self)
+	for child in node.get_children():
+		_register_tree(child)
 
 func get_subsystem(subsystem_class: Script) -> Subsystem:
 	for s in _all_subsystems:
@@ -26,13 +24,47 @@ func get_subsystem(subsystem_class: Script) -> Subsystem:
 			return s
 	return null
 
+func get_subsystems(subsystem_class: Script) -> Array[Subsystem]:
+	var result: Array[Subsystem] = []
+	for s in _all_subsystems:
+		if s.get_script() == subsystem_class:
+			result.append(s)
+	return result
+
+func get_subsystem_by_id(id: StringName) -> Subsystem:
+	for s in _all_subsystems:
+		if s.subsystem_id == id:
+			return s
+	return null
+
 func get_all() -> Array[Subsystem]:
 	return _all_subsystems
 
-## Called by CommandScheduler each tick
 func tick(delta: float) -> void:
-	## Only process subsystems on the peer that owns this robot
 	if not get_parent().is_multiplayer_authority():
 		return
 	for s in _all_subsystems:
 		s._tick(delta)
+	_sync_timer += delta
+	if _sync_timer >= SYNC_INTERVAL:
+		_sync_timer = 0.0
+		_broadcast_transforms()
+
+func _broadcast_transforms() -> void:
+	var data: Dictionary = {}
+	for s in _all_subsystems:
+		for node in s.get_sync_nodes():
+			if node == null:
+				continue
+			var path := str(get_path_to(node))
+			data[path] = { "p": node.position, "r": node.rotation }
+	if not data.is_empty():
+		_apply_transforms.rpc(data)
+
+@rpc("authority", "call_remote", "unreliable_ordered")
+func _apply_transforms(data: Dictionary) -> void:
+	for path in data:
+		var node := get_node_or_null(path) as Node3D
+		if node:
+			node.position = data[path]["p"]
+			node.rotation = data[path]["r"]

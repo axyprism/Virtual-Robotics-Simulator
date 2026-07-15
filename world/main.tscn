@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://c04qomo2yi1x8"]
+
+[ext_resource type="Script" uid="uid://c25swsaiwwa7q" path="res://world/world.gd" id="1_eow3j"]
+[ext_resource type="Material" uid="uid://8b67mooh0lfw" path="res://assets/materials/gray_light.tres" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bjx57pnapsxv" path="res://robots/scenes/robot.tscn" id="5_eow3j"]
+[ext_resource type="Script" uid="uid://ckpsql6sn876x" path="res://scripts/systems/network/robot_spawner.gd" id="6_j5wjh"]
+[ext_resource type="Script" uid="uid://cp0xht2nqm4bp" path="res://scripts/systems/network/player_spawner.gd" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bkn5rp4j80o8s" path="res://robots/scenes/rebuilt/rebuilt.tscn" id="6_vef74"]
+[ext_resource type="PackedScene" uid="uid://blgwkue1s3e8p" path="res://robots/scenes/reefscape/reefscape.tscn" id="7_hve3p"]
+[ext_resource type="PackedScene" uid="uid://wra2xieb1da5" path="res://ui/escape_menu/escape_menu.tscn" id="7_vef74"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
+sky_top_color = Color(0.3880303, 0.5497924, 0.83050394, 1)
+sky_horizon_color = Color(0.6798739, 0.673924, 0.61332333, 1)
+sky_curve = 0.043076053
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_feb5d"]
+sky_material = SubResource("ProceduralSkyMaterial_e2o6t")
+
+[sub_resource type="Environment" id="Environment_fc0e3"]
+background_mode = 2
+sky = SubResource("Sky_feb5d")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_mwb40"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80nbo"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j5wjh"]
+size = Vector3(1, 12.236572, 47.569336)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vef74"]
+size = Vector3(1, 12.236572, 18.529297)
+
+[node name="Game" type="Node3D" unique_id=908560526]
+script = ExtResource("1_eow3j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=647991379]
+environment = SubResource("Environment_fc0e3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1267665572]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1595469300]
+transform = Transform3D(1.3107331, 0, 0, 0, 1, 0, 0, 0, 3.1875591, 0, -1, 0)
+material_override = ExtResource("1_fc0e3")
+mesh = SubResource("BoxMesh_mwb40")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=46825046]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1202217864]
+shape = SubResource("BoxShape3D_80nbo")
+
+[node name="Robots" type="Node3D" parent="." unique_id=1379622493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.010192, 0)
+
+[node name="RobotSpawner" type="Node" parent="." unique_id=1063991627]
+script = ExtResource("6_j5wjh")
+spawn_root_path = NodePath("../Robots")
+registered_scenes = Array[PackedScene]([ExtResource("5_eow3j"), ExtResource("6_vef74"), ExtResource("7_hve3p")])
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="RobotSpawner" unique_id=1157294267]
+spawn_path = NodePath("../../Robots")
+
+[node name="Menu" parent="." unique_id=1452127046 groups=["UI"] instance=ExtResource("7_vef74")]
+robot_spawner_path = NodePath("../RobotSpawner")
+
+[node name="Players" type="Node3D" parent="." unique_id=1843294167]
+
+[node name="PlayerSpawner" type="Node" parent="." unique_id=400327947]
+script = ExtResource("6_ryrav")
+spawn_root_path = NodePath("../Players")
+spawn_positions = Array[Vector3]([Vector3(0, 0.7029778, 16.454346), Vector3(0, 0.7029778, -15.997005)])
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="PlayerSpawner" unique_id=285318484]
+_spawnable_scenes = PackedStringArray("uid://cqpqngjnv6i7o")
+spawn_path = NodePath("../../Players")
+
+[node name="Walls" type="Node" parent="." unique_id=1007081661]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Walls" unique_id=1777697407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.774292, 5.276611, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D" unique_id=1291747988]
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Walls" unique_id=1506314509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.76266, 5.277, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D2" unique_id=749744466]
+shape = SubResource("BoxShape3D_j5wjh")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Walls" unique_id=1728318666]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0002056165, 5.276611, -23.604317)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D3" unique_id=1484578687]
+shape = SubResource("BoxShape3D_vef74")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Walls" unique_id=697488787]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 5.277, 23.604)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/StaticBody3D4" unique_id=1773496438]
+shape = SubResource("BoxShape3D_vef74")
+
+[node name="FieldContainer" type="Node3D" parent="." unique_id=755866957]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.56573296, 0, 6.4165535)
+
+[node name="UIContainer" type="Node" parent="." unique_id=1140821514]

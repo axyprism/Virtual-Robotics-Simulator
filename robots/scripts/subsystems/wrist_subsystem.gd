@@ -9,7 +9,6 @@ var _arm_compensation: float = 0.0
 func set_angle(deg: float) -> void:
 	_target_angle = deg
 
-## Called by parent arm to counteract arm rotation so wrist stays level
 func set_world_angle_compensation(arm_angle_deg: float) -> void:
 	_arm_compensation = -arm_angle_deg
 

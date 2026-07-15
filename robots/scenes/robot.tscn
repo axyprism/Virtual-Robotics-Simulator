@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bjx57pnapsxv"]
 
 [ext_resource type="Script" uid="uid://d2mii5mgv5hjj" path="res://robots/scripts/subsystems/subsystem_manager.gd" id="1_3cn6f"]
-[ext_resource type="Script" uid="uid://cr37usd8ef422" path="res://systems/swerve_robot.gd" id="1_7xofo"]
+[ext_resource type="Script" uid="uid://cr37usd8ef422" path="res://robots/scripts/swerve_robot.gd" id="1_7xofo"]
 [ext_resource type="Script" uid="uid://dyeg8kf4gbpu1" path="res://robots/scripts/subsystems/swerve_subsystem.gd" id="3_yyxj1"]
 [ext_resource type="Script" uid="uid://eskffcak68b4" path="res://robots/scripts/subsystems/swerve_module_subsystem.gd" id="4_bkaji"]
-[ext_resource type="Script" uid="uid://cgs7tw40mllp" path="res://systems/robot_camera.gd" id="7_bkaji"]
+[ext_resource type="Script" uid="uid://cgs7tw40mllp" path="res://scripts/systems/robot_camera.gd" id="7_bkaji"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wx7ge"]
 friction = 0.1

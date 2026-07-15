@@ -16,7 +16,4 @@ func update(delta: float) -> void:
 	joint.rotation.x = lerp_angle(
 		joint.rotation.x, deg_to_rad(_target_angle), delta * 5.0
 	)
-	# Wrist is a child node — it ticks separately through the manager's flat list
-	# but you can still query it directly here for compensation math:
-	# e.g. keep wrist field-level by countering arm angle
 	wrist.set_world_angle_compensation(get_angle())

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2e1bv1n5scu7"]
+
+[ext_resource type="Script" uid="uid://k4wx5ckwhred" path="res://ui/main_menu/game_entry.gd" id="1_0mvi7"]
+
+[node name="GameEntry" type="VBoxContainer" unique_id=609147435]
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("1_0mvi7")
+
+[node name="PreviewPanel" type="TextureRect" parent="." unique_id=1909302611]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 4
+stretch_mode = 6
+
+[node name="SelectButton" type="Button" parent="." unique_id=1174458075]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Placeholder"
