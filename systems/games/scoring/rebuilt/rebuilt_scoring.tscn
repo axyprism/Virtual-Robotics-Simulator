@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dut7js7o15iau"]
+
+[ext_resource type="Script" uid="uid://bjeja8gegvpja" path="res://assets/games/scoring/rebuilt_scoring.gd" id="1_qhlvv"]
+
+[node name="RebuiltScoring" type="Node" unique_id=1032032962]
+script = ExtResource("1_qhlvv")

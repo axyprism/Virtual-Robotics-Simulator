@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cy00drrklqoyi"]
+
+[ext_resource type="Script" uid="uid://bjaxmqn4m2w23" path="res://ui/game ui/robot_select.gd" id="1_j0kqu"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1914957858]
+script = ExtResource("1_j0kqu")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1703755509]
+clip_contents = true
+anchors_preset = -1
+anchor_left = 0.21
+anchor_top = 0.5
+anchor_right = 0.79
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1942387398]
+clip_contents = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=645216353]
+layout_mode = 2
+
+[node name="TeamNumberField" type="LineEdit" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=165563070]
+layout_mode = 2
+placeholder_text = "Team Number"
+
+[node name="ItemList" type="ScrollContainer" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=1220177688]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList" unique_id=2074227209]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RobotContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList/HBoxContainer" unique_id=1001273334]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RobotName" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList/HBoxContainer/RobotContainer" unique_id=960148921]
+layout_mode = 2
+text = "Robot Name"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList/HBoxContainer/RobotContainer" unique_id=1735311268]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList/HBoxContainer/RobotContainer/SubViewportContainer" unique_id=434144176]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="SelectButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/ItemList/HBoxContainer/RobotContainer" unique_id=1558222195]
+layout_mode = 2
+text = "Select"
+
+[node name="BackButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer" unique_id=493344677]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"

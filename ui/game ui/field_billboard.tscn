@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cfxtq7kc26l0s"]
+
+[ext_resource type="Script" uid="uid://ci6jl3chqvf2v" path="res://ui/game ui/field_billboard.gd" id="1_k8k3s"]
+
+[node name="FieldBillboard" type="Control" unique_id=1799911414]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k8k3s")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=791383977]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=2053293475]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=858058318]
+layout_mode = 2
+text = "Upcoming Matches"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer" unique_id=121335634]
+layout_mode = 2
+
+[node name="UpcomingMatchesList" type="VBoxContainer" parent="Panel/VBoxContainer" unique_id=500568334]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/UpcomingMatchesList" unique_id=733778487]
+layout_mode = 2
+
+[node name="RedMember1" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=1958789370]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+text = "1234"
+
+[node name="RedMember2" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=1795650498]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+text = "1234"
+
+[node name="RedMember3" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=10794582]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+text = "1234"
+
+[node name="VSLabel" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=1753315301]
+layout_mode = 2
+text = "VS"
+
+[node name="BlueMember1" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=1863533909]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.4, 0.7019608, 1)
+text = "1234"
+
+[node name="BlueMember2" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=1047108468]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.4, 0.7019608, 1)
+text = "1234"
+
+[node name="BlueMember3" type="Label" parent="Panel/VBoxContainer/UpcomingMatchesList/HBoxContainer" unique_id=328301373]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.003921569, 0.4, 0.7019608, 1)
+text = "1234"

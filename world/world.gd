@@ -1,12 +1,14 @@
 extends Node3D
 
-@onready var robot_spawner:  RobotSpawner  = $RobotSpawner
+@onready var robot_spawner: RobotSpawner = $RobotSpawner
 @onready var player_spawner: PlayerSpawner = $PlayerSpawner
 
 @onready var field_container = $FieldContainer
 @onready var ui_container = $UIContainer
 
 func _ready() -> void:
+	if GameManager.current_game == null:
+		await GameManager.game_selected
 	GameManager.load_current_game(field_container, ui_container)
 	
 	robot_spawner.robot_spawned.connect(_on_robot_spawned)

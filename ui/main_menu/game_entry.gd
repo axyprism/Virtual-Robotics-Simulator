@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var icon: TextureRect   = $PreviewPanel
+@onready var icon: TextureRect = $PanelContainer/PreviewPanel
 @onready var select_button: Button = $SelectButton
 
 var game_data: GameData

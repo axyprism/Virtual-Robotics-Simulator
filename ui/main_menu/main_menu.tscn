@@ -1,8 +1,22 @@
-[gd_scene format=3 uid="uid://bkc05rh417d3p"]
+[gd_scene format=3 uid="uid://cjtqbepg22lv6"]
 
-[ext_resource type="Script" uid="uid://d3pxcasf78i6h" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="Script" uid="uid://d0bssut6tarny" path="res://ui/main_menu/main_menu.gd" id="1_mu8pm"]
+[ext_resource type="PackedScene" uid="uid://6fijkfrnkwfo" path="res://assets/games/rebuilt/rebuilt_field.scn" id="2_omy8q"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mu8pm"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2j78h"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4dc7x"]
+sky_material = SubResource("ProceduralSkyMaterial_2j78h")
+
+[sub_resource type="Environment" id="Environment_ostd2"]
+background_mode = 2
+sky = SubResource("Sky_4dc7x")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2j78h"]
 content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
@@ -14,95 +28,113 @@ corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 corner_detail = 19
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruuq5"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dc7x"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.20784314, 0.6)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 19
 
-[node name="MainMenu" type="Control" unique_id=519876228]
+[node name="Control" type="CanvasLayer" unique_id=1328179194]
+script = ExtResource("1_mu8pm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=752495675]
+environment = SubResource("Environment_ostd2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1231467342]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Background" type="Node3D" parent="." unique_id=210674531]
+
+[node name="RebuiltField" parent="Background" unique_id=435958060 instance=ExtResource("2_omy8q")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background" unique_id=1330154451]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer" unique_id=108937899]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Pivot" type="Node3D" parent="Background/SubViewportContainer/SubViewport" unique_id=885951191]
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport/Pivot" unique_id=865726986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.037288666, 2.6514485, 4.869277)
+
+[node name="Control" type="Control" parent="." unique_id=1335890401]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uhj5c")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1235352623]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.6645101, 0.66451, 0.66451, 1)
-
-[node name="StartMenu" type="PanelContainer" parent="." unique_id=1946924473]
-visible = false
-custom_minimum_size = Vector2(500, 300)
+[node name="StartMenu" type="PanelContainer" parent="Control" unique_id=2035298921]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.16
-anchor_top = 0.2
-anchor_right = 0.84
-anchor_bottom = 0.8
-offset_left = 0.019958496
-offset_right = -0.020019531
+anchor_left = 0.034
+anchor_top = 0.035
+anchor_right = 0.435
+anchor_bottom = 0.965
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
 
-[node name="MarginContainer" type="MarginContainer" parent="StartMenu" unique_id=737032783]
+[node name="MarginContainer" type="MarginContainer" parent="Control/StartMenu" unique_id=835917604]
 layout_mode = 2
-theme_override_constants/margin_left = 128
-theme_override_constants/margin_top = 128
-theme_override_constants/margin_right = 128
-theme_override_constants/margin_bottom = 128
+size_flags_horizontal = 4
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="HBoxContainer" type="VBoxContainer" parent="StartMenu/MarginContainer" unique_id=1253310970]
+[node name="MenuButtons" type="VBoxContainer" parent="Control/StartMenu/MarginContainer" unique_id=614427572]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=232057366]
+[node name="MainMenuLabel" type="Label" parent="Control/StartMenu/MarginContainer/MenuButtons" unique_id=911518701]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_font_sizes/font_size = 56
+text = "Virtual Robotics Simulator"
 
-[node name="SingleplayerButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer/HBoxContainer" unique_id=869398203]
+[node name="Singleplayer" type="Button" parent="Control/StartMenu/MarginContainer/MenuButtons" unique_id=1588897274]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
 text = "Singleplayer"
 
-[node name="MultiplayerButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer/HBoxContainer" unique_id=2039095345]
+[node name="Multiplayer" type="Button" parent="Control/StartMenu/MarginContainer/MenuButtons" unique_id=1168255647]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
-text = "Multiplayer
-"
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Multiplayer"
 
-[node name="OptionsButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=837653137]
-custom_minimum_size = Vector2(100, 0)
+[node name="Options" type="Button" parent="Control/StartMenu/MarginContainer/MenuButtons" unique_id=655995171]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="StartMenu/MarginContainer/HBoxContainer" unique_id=730407241]
-custom_minimum_size = Vector2(100, 0)
+[node name="Quit" type="Button" parent="Control/StartMenu/MarginContainer/MenuButtons" unique_id=2100530222]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_ruuq5")
-text = "Quit"
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Quit
+"
 
-[node name="GameSelect" type="PanelContainer" parent="." unique_id=2060972773]
+[node name="GameSelect" type="PanelContainer" parent="Control" unique_id=1102301993]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -111,34 +143,34 @@ anchor_right = 0.7
 anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2j78h")
 
-[node name="MarginContainer" type="MarginContainer" parent="GameSelect" unique_id=584034517]
+[node name="MarginContainer" type="MarginContainer" parent="Control/GameSelect" unique_id=1748824393]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameSelect/MarginContainer" unique_id=1919889308]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GameSelect/MarginContainer" unique_id=776016742]
 layout_mode = 2
 
-[node name="ItemList" type="ScrollContainer" parent="GameSelect/MarginContainer/VBoxContainer" unique_id=213316937]
+[node name="ItemList" type="ScrollContainer" parent="Control/GameSelect/MarginContainer/VBoxContainer" unique_id=2043641789]
 layout_mode = 2
 size_flags_vertical = 3
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameSelect/MarginContainer/VBoxContainer/ItemList" unique_id=1642409674]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameSelect/MarginContainer/VBoxContainer/ItemList" unique_id=818645233]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="BackButton" type="Button" parent="GameSelect/MarginContainer/VBoxContainer" unique_id=908945191]
+[node name="BackButton" type="Button" parent="Control/GameSelect/MarginContainer/VBoxContainer" unique_id=2133191184]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Back"
 
-[node name="MultiplayerScreen" type="PanelContainer" parent="." unique_id=1231518021]
+[node name="MultiplayerScreen" type="PanelContainer" parent="Control" unique_id=1987082844]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -148,69 +180,104 @@ anchor_right = 0.7
 anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mu8pm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2j78h")
 
-[node name="MarginContainer" type="MarginContainer" parent="MultiplayerScreen" unique_id=77015920]
+[node name="MarginContainer" type="MarginContainer" parent="Control/MultiplayerScreen" unique_id=628058284]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer" unique_id=1713074035]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MultiplayerScreen/MarginContainer" unique_id=1428578002]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=756324780]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=337344903]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1384933351]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1382485809]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1189221894]
+[node name="Label" type="Label" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=777811699]
 layout_mode = 2
 text = "Host on Local Network"
 
-[node name="PortField" type="LineEdit" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=49412833]
+[node name="PortField" type="LineEdit" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=577600298]
 layout_mode = 2
 placeholder_text = "Port (default 7777)"
 
-[node name="HostButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1192074341]
+[node name="HostButton" type="Button" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1688075119]
 layout_mode = 2
 text = "Host"
 
-[node name="HSeparator" type="HSeparator" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1835208775]
+[node name="HSeparator" type="HSeparator" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=165269145]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1291261369]
+[node name="Label2" type="Label" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2088629183]
 layout_mode = 2
 text = "Join Via IP"
 
-[node name="IPField" type="LineEdit" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1525020062]
+[node name="IPField" type="LineEdit" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=376841517]
 layout_mode = 2
 placeholder_text = "IP Address"
 
-[node name="JoinButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=691942699]
+[node name="JoinButton" type="Button" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=245829966]
 layout_mode = 2
 text = "Join"
 
-[node name="VSeparator" type="VSeparator" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1134275909]
+[node name="VSeparator" type="VSeparator" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2089605152]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1249603046]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1676886201]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=106720065]
+[node name="Label" type="Label" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1128703708]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Find Servers Online"
 
-[node name="ServerContainer" type="PanelContainer" parent="MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=928225366]
+[node name="ServerContainer" type="PanelContainer" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=27622318]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BackButton" type="Button" parent="MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=1478969654]
+[node name="BackButton" type="Button" parent="Control/MultiplayerScreen/MarginContainer/VBoxContainer" unique_id=2054954932]
 layout_mode = 2
 size_flags_horizontal = 0
+text = "Back"
+
+[node name="OptionsScreen" type="PanelContainer" parent="Control" unique_id=1304311485]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4dc7x")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/OptionsScreen" unique_id=180846109]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsScreen/MarginContainer" unique_id=1578317038]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/OptionsScreen/MarginContainer/VBoxContainer" unique_id=510638855]
+layout_mode = 2
+text = "Camera Mode"
+
+[node name="CameraModeOption" type="OptionButton" parent="Control/OptionsScreen/MarginContainer/VBoxContainer" unique_id=751681113]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Control/OptionsScreen/MarginContainer/VBoxContainer" unique_id=656895323]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
 text = "Back"

@@ -2,12 +2,31 @@
 
 [ext_resource type="Script" uid="uid://k4wx5ckwhred" path="res://ui/main_menu/game_entry.gd" id="1_0mvi7"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mvi7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="GameEntry" type="VBoxContainer" unique_id=609147435]
 size_flags_horizontal = 4
 size_flags_vertical = 3
 script = ExtResource("1_0mvi7")
 
-[node name="PreviewPanel" type="TextureRect" parent="." unique_id=1909302611]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=875361509]
+clip_children = 1
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0mvi7")
+
+[node name="PreviewPanel" type="TextureRect" parent="PanelContainer" unique_id=1909302611]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 3

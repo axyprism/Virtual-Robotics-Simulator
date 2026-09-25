@@ -1,0 +1,24 @@
+[gd_resource type="Theme" format=3 uid="uid://ctiqbimvqfyco"]
+
+[ext_resource type="Texture2D" uid="uid://2pr6qighfm88" path="res://assets/images/button_texture_selected.png" id="1_tgk0f"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s1n0q"]
+texture = ExtResource("1_tgk0f")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8givb"]
+load_path = "res://.godot/imported/button_texture.png-191594e9974233e432fbcd1a6476c02f.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tgk0f"]
+texture = SubResource("CompressedTexture2D_8givb")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxTexture_s1n0q")
+Button/styles/normal = SubResource("StyleBoxTexture_tgk0f")

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="GameData" format=3 uid="uid://cvvltw16a0gy5"]
+
+[ext_resource type="Script" uid="uid://bmxv8wcd54v27" path="res://systems/games/data/game_data.gd" id="1_j7djt"]
+[ext_resource type="PackedScene" uid="uid://dxrrl85gnr68m" path="res://systems/robots/scenes/rebuilt/254.tscn" id="1_ns83w"]
+[ext_resource type="PackedScene" uid="uid://6fijkfrnkwfo" path="res://assets/games/rebuilt/rebuilt_field.scn" id="1_xs6tx"]
+[ext_resource type="PackedScene" uid="uid://dut7js7o15iau" path="res://systems/games/scoring/rebuilt/rebuilt_scoring.tscn" id="2_7hntx"]
+[ext_resource type="PackedScene" uid="uid://bm105ks50p860" path="res://systems/robots/scenes/rebuilt/4669.tscn" id="2_bvh4n"]
+[ext_resource type="Texture2D" uid="uid://1uvhro7m7ahf" path="res://assets/images/rebuilt thumbnail.png" id="3_ubask"]
+[ext_resource type="PackedScene" uid="uid://cbvoe6fns1ncn" path="res://ui/scoring/RebuiltScoringUI.tscn" id="4_ubask"]
+
+[resource]
+script = ExtResource("1_j7djt")
+game_name = "Rebuilt"
+thumbnail = ExtResource("3_ubask")
+field_scene = ExtResource("1_xs6tx")
+scoring_scene = ExtResource("2_7hntx")
+ui_scene = ExtResource("4_ubask")
+allowed_robots = Array[PackedScene]([ExtResource("1_ns83w"), ExtResource("2_bvh4n")])
+red_spawn_positions = Array[Vector3]([Vector3(-3.406827, 0, -6.2984476), Vector3(0.302221, 0, -6.298447), Vector3(4.077204, 0, -6.2984467)])
+blue_spawn_positions = Array[Vector3]([Vector3(-3.4288054, 0, 6.526607), Vector3(0.34617805, 0, 6.526607), Vector3(4.055226, 0, 6.526607)])
+autonomous_time = 20.0
+teleop_time = 140.0
+point_values = {
+"climb_auto_level1": 15,
+"climb_teleop_level1": 10,
+"climb_teleop_level2": 20,
+"climb_teleop_level3": 30,
+"fuel": 1
+}
+metadata/_custom_type_script = "uid://bmxv8wcd54v27"

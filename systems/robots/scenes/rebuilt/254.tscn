@@ -1,0 +1,414 @@
+[gd_scene format=3 uid="uid://dxrrl85gnr68m"]
+
+[ext_resource type="Script" uid="uid://b3kuu2lqvsmo1" path="res://systems/robots/scenes/rebuilt/254.gd" id="1_swjp5"]
+[ext_resource type="Script" uid="uid://d2mii5mgv5hjj" path="res://systems/robots/scripts/subsystems/subsystem_manager.gd" id="2_i4hym"]
+[ext_resource type="Script" uid="uid://dyeg8kf4gbpu1" path="res://systems/robots/scripts/subsystems/swerve/swerve_subsystem.gd" id="3_lodlb"]
+[ext_resource type="Script" uid="uid://eskffcak68b4" path="res://systems/robots/scripts/subsystems/swerve/swerve_module_subsystem.gd" id="4_dl7xn"]
+[ext_resource type="Shape3D" uid="uid://dh2um68vh4qx1" path="res://systems/robots/scenes/rebuilt/wheel_collider.tres" id="5_i4hym"]
+[ext_resource type="Material" uid="uid://8b67mooh0lfw" path="res://assets/materials/gray_light.tres" id="5_sath0"]
+[ext_resource type="Script" uid="uid://cv2lip0t38mwh" path="res://systems/robots/scripts/subsystems/arm/arm_subsystem.gd" id="7_sath0"]
+[ext_resource type="Script" uid="uid://dxmvpeww5vi13" path="res://systems/robots/scripts/subsystems/intake/intake_subsystem.gd" id="8_1qyjc"]
+[ext_resource type="Material" uid="uid://8vamdac02ko" path="res://assets/materials/gray_dark.tres" id="9_ydpc4"]
+[ext_resource type="Script" uid="uid://cgs7tw40mllp" path="res://systems/robot_camera.gd" id="10_1qyjc"]
+[ext_resource type="Script" uid="uid://cjgsb723dsuwb" path="res://systems/robots/scripts/subsystems/elevator/elevator_subsystem.gd" id="10_ydpc4"]
+[ext_resource type="Script" uid="uid://clytk2mt3iy7c" path="res://systems/robots/scripts/subsystems/shooter/shooter_subsystem.gd" id="12_3mhnu"]
+[ext_resource type="Script" uid="uid://bmak8cx2xs421" path="res://systems/robots/scripts/subsystems/shooter/flywheel/flywheel_subsystem.gd" id="13_o5tdc"]
+[ext_resource type="Script" uid="uid://c23cfxlxfj323" path="res://systems/robots/scripts/subsystems/shooter/feeder/feeder_subsystem.gd" id="14_1tm3m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bkaji"]
+albedo_color = Color(0.34, 0.34, 0.34, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o5tdc"]
+material = SubResource("StandardMaterial3D_bkaji")
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.04
+
+[sub_resource type="BoxMesh" id="BoxMesh_1tm3m"]
+size = Vector3(0.686, 0.4, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyxj1"]
+albedo_color = Color(0.64398086, 0.64398086, 0.6439808, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_umqnr"]
+material = SubResource("StandardMaterial3D_yyxj1")
+size = Vector3(0.686, 0.1, 0.686)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gf4hg"]
+size = Vector3(0.686, 0.4, 0.079892576)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_djnal"]
+size = Vector3(0.686, 0.4, 0.07226318)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_orfh6"]
+size = Vector3(0.686, 0.4, 0.074216306)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydpc4"]
+size = Vector3(0.686, 0.103, 0.686)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bakbm"]
+size = Vector3(0.686, 0.044304688, 0.54221874)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aiahi"]
+size = Vector3(0.686, 0.14870605, 0.01)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bakbm"]
+height = 0.6
+radius = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ccgwx"]
+height = 0.6
+radius = 0.05
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jxq5q"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.63
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mbcn"]
+size = Vector3(0.28970528, 0.5962677, 0.2937932)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3mhnu"]
+size = Vector3(0.01, 0.4, 0.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jxq5q"]
+size = Vector3(0.01, 0.56, 0.328)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3mhnu"]
+size = Vector3(0.01, 0.56, 0.328)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o5tdc"]
+size = Vector3(0.01, 0.56, 0.328)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3mbcn"]
+size = Vector3(0.65, 0.01, 0.318)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tm3m"]
+size = Vector3(0.65, 0.01, 0.318)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5tdc"]
+size = Vector3(0.65, 0.44, 0.018)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umqnr"]
+size = Vector3(0.65, 0.44, 0.018)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gf4hg"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.6
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gc8op"]
+size = Vector3(0.67, 0.145, 0.204)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w42gu"]
+size = Vector3(0.2808008, 0.145, 0.204)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1kg0v"]
+size = Vector3(0.63, 0.16, 0.532)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fq0f"]
+size = Vector3(0.63, 0.16, 0.402)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wx7ge"]
+properties/0/path = NodePath("SubsystemManager/SwerveSubsystem:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("SubsystemManager/SwerveSubsystem:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("SubsystemManager/SwerveSubsystem:linear_velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("SubsystemManager/SwerveSubsystem:angular_velocity")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="254" type="Node3D" unique_id=1708092535]
+script = ExtResource("1_swjp5")
+
+[node name="SubsystemManager" type="Node3D" parent="." unique_id=2051304260]
+script = ExtResource("2_i4hym")
+
+[node name="SwerveSubsystem" type="RigidBody3D" parent="SubsystemManager" unique_id=1737983171]
+mass = 120.0
+script = ExtResource("3_lodlb")
+max_translation_speed = 12.0
+max_rotation_speed = 6.0
+module_paths = Array[NodePath]([NodePath("FL"), NodePath("FR"), NodePath("BL"), NodePath("BR")])
+
+[node name="FL" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=106597374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, -0.15, 0.27)
+script = ExtResource("4_dl7xn")
+module_offset = Vector2(-0.4, 0.4)
+wheel_collider_shape = ExtResource("5_i4hym")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"FL"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/SwerveSubsystem/FL" unique_id=460506589]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/FL/SteerVisual" unique_id=2124575963]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_o5tdc")
+
+[node name="FR" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=873658982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, -0.15, -0.27)
+script = ExtResource("4_dl7xn")
+module_offset = Vector2(-0.4, -0.4)
+wheel_collider_shape = ExtResource("5_i4hym")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"FR"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/SwerveSubsystem/FR" unique_id=655375021]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/FR/SteerVisual" unique_id=949974133]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_o5tdc")
+
+[node name="BL" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=620405138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, -0.15750906, 0.27)
+script = ExtResource("4_dl7xn")
+module_offset = Vector2(0.4, 0.4)
+wheel_collider_shape = ExtResource("5_i4hym")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"BL"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/SwerveSubsystem/BL" unique_id=1976324449]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/BL/SteerVisual" unique_id=478523739]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_o5tdc")
+
+[node name="BR" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1056114724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, -0.15750906, -0.27)
+script = ExtResource("4_dl7xn")
+module_offset = Vector2(0.4, -0.4)
+wheel_collider_shape = ExtResource("5_i4hym")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"BR"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/SwerveSubsystem/BR" unique_id=124603733]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/BR/SteerVisual" unique_id=870675119]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_o5tdc")
+
+[node name="Visuals" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1226217449]
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Visuals" unique_id=361856862]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.33780015, 0.18559557, -0.0057936907)
+material_override = ExtResource("5_sath0")
+mesh = SubResource("BoxMesh_1tm3m")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Visuals" unique_id=594648345]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.338, 0.186, -0.006)
+material_override = ExtResource("5_sath0")
+mesh = SubResource("BoxMesh_1tm3m")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Visuals" unique_id=1969973545]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.186, 0.338)
+material_override = ExtResource("5_sath0")
+mesh = SubResource("BoxMesh_1tm3m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Visuals" unique_id=1884866911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06341037, 0)
+mesh = SubResource("BoxMesh_umqnr")
+
+[node name="WallCollider" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=109601045]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.35382065, 0.18559557, -0.005793691)
+shape = SubResource("BoxShape3D_gf4hg")
+
+[node name="WallCollider2" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1799249692]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.35374585, 0.186, -0.0059999996)
+shape = SubResource("BoxShape3D_djnal")
+
+[node name="WallCollider3" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1162954354]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.7180412e-09, 0.186, 0.3576521)
+shape = SubResource("BoxShape3D_orfh6")
+
+[node name="FloorCollider" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1871258311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06609568, 0)
+shape = SubResource("BoxShape3D_ydpc4")
+
+[node name="FloorCollider2" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=697761928]
+transform = Transform3D(1, 0, 0, 0, 0.98682183, -0.1618105, 0, 0.1618105, 0.98682183, 0, -0.041227706, -0.07202945)
+shape = SubResource("BoxShape3D_bakbm")
+
+[node name="FeederCollider" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1843662082]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0040545757, 0.29599756, -0.0043961406)
+shape = SubResource("BoxShape3D_aiahi")
+
+[node name="flywheel" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=682015371]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 1.0697754e-09, 0.22275281, 0.12806433)
+shape = SubResource("CylinderShape3D_bakbm")
+
+[node name="flywheel2" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem" unique_id=223069577]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.5282623e-09, 0.19721192, 0.042037614)
+shape = SubResource("CylinderShape3D_ccgwx")
+
+[node name="ArmSubsystem" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1643221109 node_paths=PackedStringArray("arm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00031214952, -0.26087278)
+script = ExtResource("7_sath0")
+arm = NodePath("Arm")
+min_angle_deg = -120.0
+subsystem_id = &"Arm"
+
+[node name="Arm" type="Node3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem" unique_id=109898628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021, 0)
+
+[node name="IntakeSubsystem" type="Node3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm" unique_id=47788485]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.44152394, -0.03844452)
+script = ExtResource("8_1qyjc")
+roller_visual_path = NodePath("WheelVisual")
+roller_zone_paths = Array[NodePath]([NodePath("Area3D")])
+hold_enabled = false
+spin_axis = Vector3(0, 1, 0)
+intake_force = 30.0
+auto_stop_on_pickup = false
+subsystem_id = &"Intake"
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm/IntakeSubsystem" unique_id=305512389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08505669, 1.8912143e-09, 0.038000003)
+material_override = ExtResource("9_ydpc4")
+mesh = SubResource("CylinderMesh_jxq5q")
+
+[node name="Area3D" type="Area3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm/IntakeSubsystem" unique_id=2035331331]
+transform = Transform3D(-0.98806494, 0, -0.15403795, 0, 1, 0, 0.15403795, 0, -0.98806494, 0.052100897, -1.566616e-08, 0.004654169)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm/IntakeSubsystem/Area3D" unique_id=1541383554]
+transform = Transform3D(1.0000001, -1.6137672e-15, 0, -6.963319e-13, 1.0000001, 0, 0, 5.726089e-14, 1, -0.18944073, -0.00035621622, 0.0974575)
+shape = SubResource("BoxShape3D_3mbcn")
+
+[node name="Arm" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm" unique_id=633566034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317105, 0.18744785, 0)
+mesh = SubResource("BoxMesh_3mhnu")
+
+[node name="Arm2" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/ArmSubsystem/Arm" unique_id=1285392650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.317, 0.187, 0)
+mesh = SubResource("BoxMesh_3mhnu")
+
+[node name="Shroud" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=329645410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0018357784, 0.23846674, -0.14990062)
+script = ExtResource("10_ydpc4")
+carriage_path = NodePath("Carrige")
+travel_axis = Vector3(0, 0, -1)
+max_height = 0.8
+max_speed = 0.7
+subsystem_id = &"Elevator"
+
+[node name="Carrige" type="Node3D" parent="SubsystemManager/SwerveSubsystem/Shroud" unique_id=235647661]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=1041395068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31722832, -0.09938317, -0.032980576)
+mesh = SubResource("BoxMesh_jxq5q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=201224285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31722832, -0.09938317, -0.032980576)
+shape = SubResource("BoxShape3D_3mhnu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=583508159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317, -0.099, -0.033)
+mesh = SubResource("BoxMesh_jxq5q")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=2016672452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.317, -0.099, -0.033)
+shape = SubResource("BoxShape3D_o5tdc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=141072251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17908974, -0.011723265)
+mesh = SubResource("BoxMesh_3mbcn")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=966224980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17908974, -0.011723265)
+shape = SubResource("BoxShape3D_1tm3m")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=2023008663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.037548773, 0.13658255)
+mesh = SubResource("BoxMesh_o5tdc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shroud/Carrige" unique_id=2109809628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.037548773, 0.13658255)
+shape = SubResource("BoxShape3D_umqnr")
+
+[node name="RobotCamera" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=1471167355]
+script = ExtResource("10_1qyjc")
+pivot_height = 1.0
+default_pitch_deg = -30.0
+
+[node name="CameraArm" type="Node3D" parent="SubsystemManager/SwerveSubsystem/RobotCamera" unique_id=533310188]
+
+[node name="Camera3D" type="Camera3D" parent="SubsystemManager/SwerveSubsystem/RobotCamera/CameraArm" unique_id=1664714160]
+
+[node name="Shooter" type="Node3D" parent="SubsystemManager/SwerveSubsystem" unique_id=716572094 node_paths=PackedStringArray("flywheel", "feeder")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.059159696)
+script = ExtResource("12_3mhnu")
+flywheel = NodePath("Flywheel")
+feeder = NodePath("Feeder")
+subsystem_id = &"Shooter"
+
+[node name="Flywheel" type="Node3D" parent="SubsystemManager/SwerveSubsystem/Shooter" unique_id=1220746850 node_paths=PackedStringArray("contact_zones")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.0184834e-09, 0.14553818, 0.22359523)
+script = ExtResource("13_o5tdc")
+wheel_visual_path = NodePath("WheelVisual")
+launch_force = 80.0
+contact_zones = [NodePath("flywheelArea"), NodePath("flywheelArea2")]
+max_visual_spin_rps = 30.0
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel" unique_id=197488689]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.961174e-08, 0.07721463, 0.1546906)
+material_override = ExtResource("9_ydpc4")
+mesh = SubResource("CylinderMesh_gf4hg")
+
+[node name="flywheelArea" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel" unique_id=365992495]
+transform = Transform3D(1, -1.8460561e-08, -6.1561565e-08, 5.977045e-08, 0.6192174, 0.7852197, 2.3624374e-08, -0.7852197, 0.6192174, -5.125301e-09, 0.24574015, 0.03502512)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel/flywheelArea" unique_id=1908220716]
+transform = Transform3D(1, 0, -5.400125e-13, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_gc8op")
+
+[node name="flywheelArea3" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel" unique_id=908395179]
+transform = Transform3D(0.0049615554, -0.012175679, -0.9999137, 0.87031966, 0.4924845, -0.0016783625, 0.49246234, -0.87023616, 0.013040245, 1.6353605e-08, 0.24574015, -0.21066493)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel/flywheelArea3" unique_id=557243616]
+transform = Transform3D(1.0000054, 1.1920929e-07, 3.259629e-09, -1.1920929e-07, 1.000001, -1.8626451e-09, 1.21071935e-08, -5.401671e-08, 1, 0.1118232, -0.22210258, -0.18179344)
+shape = SubResource("BoxShape3D_w42gu")
+
+[node name="flywheelArea4" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel" unique_id=308806708]
+transform = Transform3D(0.0049615568, 0.012175592, 0.9999137, 0.8703198, -0.4924845, 0.0016783029, 0.49246243, 0.87023616, -0.013040179, -0.0633945, 0.0256408, 0.17895125)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel/flywheelArea4" unique_id=1548023996]
+transform = Transform3D(1.0000054, 1.1920929e-07, 3.259629e-09, -1.1920929e-07, 1.000001, -1.8626451e-09, 1.21071935e-08, -5.401671e-08, 1, 0.1118232, -0.22210258, -0.18179344)
+shape = SubResource("BoxShape3D_w42gu")
+
+[node name="flywheelArea2" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel" unique_id=125977564]
+transform = Transform3D(1, 0, 0, 0, -0.2588022, 0.9659304, 0, -0.9659304, -0.2588022, -2.220446e-16, -0.052565217, 0.03772112)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Flywheel/flywheelArea2" unique_id=1779550016]
+shape = SubResource("BoxShape3D_gc8op")
+
+[node name="Feeder" type="Node3D" parent="SubsystemManager/SwerveSubsystem/Shooter" unique_id=1586195862 node_paths=PackedStringArray("contact_zones")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12586558, -0.08004736)
+script = ExtResource("14_1tm3m")
+feeder_visual_path = NodePath("WheelVisual")
+contact_zones = [NodePath("FeederArea"), NodePath("FeederArea2")]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Feeder" unique_id=552592464]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.5282623e-09, 0.07134634, 0.06292528)
+material_override = ExtResource("9_ydpc4")
+mesh = SubResource("CylinderMesh_gf4hg")
+
+[node name="FeederArea" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Feeder" unique_id=1751649525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06423825, 0.08588239)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Feeder/FeederArea" unique_id=57077073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.06479454)
+shape = SubResource("BoxShape3D_1kg0v")
+
+[node name="FeederArea2" type="Area3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Feeder" unique_id=1014528638]
+transform = Transform3D(1, 0, 0, 0, 0.6826236, 0.73077023, 0, -0.73077023, 0.6826236, 0, -0.011451244, 0.22315904)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubsystemManager/SwerveSubsystem/Shooter/Feeder/FeederArea2" unique_id=1915121262]
+shape = SubResource("BoxShape3D_6fq0f")
+
+[node name="Sync" type="MultiplayerSynchronizer" parent="." unique_id=2060104967]
+replication_config = SubResource("SceneReplicationConfig_wx7ge")

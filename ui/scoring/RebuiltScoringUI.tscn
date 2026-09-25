@@ -1,0 +1,387 @@
+[gd_scene format=3 uid="uid://cbvoe6fns1ncn"]
+
+[ext_resource type="Texture2D" uid="uid://d1iw3jjuui3v8" path="res://assets/images/FIRSTicon_Spot_withTM.png" id="1_8o3k4"]
+[ext_resource type="Script" uid="uid://b7dhn3wdaw7b" path="res://ui/scoring/rebuilt_scoring_ui.gd" id="1_o4bw8"]
+[ext_resource type="Texture2D" uid="uid://cgcroqs1eik2w" path="res://assets/images/RedBalls.png" id="2_f16n0"]
+[ext_resource type="Texture2D" uid="uid://caejwk42oy34m" path="res://assets/images/BlueBalls.png" id="3_1xhe7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_femgq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.5137255, 0.05490196, 0.07058824, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmw3y"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0.38431373, 0.039215688, 0.050980393, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aiw5"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0udo"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8eai"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go2tx"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o3bmw"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.003921569, 0.4, 0.7019608, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k638o"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.25490198, 0.44705883, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ccy8"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0.19215687, 0.32941177, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fejdn"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.003921569, 0.4, 0.7019608, 1)
+corner_detail = 5
+
+[node name="Control" type="CanvasLayer" unique_id=1862707313]
+script = ExtResource("1_o4bw8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2029498376]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="QualNumBox" type="HBoxContainer" parent="VBoxContainer" unique_id=1432137880]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer/QualNumBox" unique_id=1939766711]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "FIRST AGE"
+
+[node name="QualificationNum" type="Label" parent="VBoxContainer/QualNumBox" unique_id=1148742344]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Qualification 1 of 1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/QualNumBox" unique_id=821545673]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "REBUILT"
+horizontal_alignment = 2
+
+[node name="OverlayContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=821183201]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RedTeams" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=601680425]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_femgq")
+
+[node name="RedAlliance" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams" unique_id=765853331]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance" unique_id=1675702703]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+
+[node name="TeamTabs" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance" unique_id=1127814483]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TeamTab" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs" unique_id=952915604]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab" unique_id=168573286]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab" unique_id=521136204]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs" unique_id=1759807775]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmw3y")
+
+[node name="TeamTab2" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/PanelContainer" unique_id=1858174366]
+layout_mode = 2
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2" unique_id=557242943]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2" unique_id=1693359728]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="TeamTab3" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs" unique_id=2020104070]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab3" unique_id=1763599846]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab3" unique_id=1258865174]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance" unique_id=2303643]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/MarginContainer" unique_id=624824044]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8aiw5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/MarginContainer/PanelContainer" unique_id=1259150627]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer" unique_id=534560128]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "56/100"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer" unique_id=973135848]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("2_f16n0")
+expand_mode = 3
+
+[node name="RedScore" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=655536194]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b0udo")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/RedScore" unique_id=1023644557]
+layout_mode = 2
+
+[node name="RedLabel" type="Label" parent="VBoxContainer/OverlayContainer/RedScore/HBoxContainer" unique_id=1684148138]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Red"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/OverlayContainer/RedScore/HBoxContainer" unique_id=569683441]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "123"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=210785350]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l8eai")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/PanelContainer" unique_id=2076097720]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/PanelContainer/VBoxContainer" unique_id=1462789121]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ShiftCounter" type="Label" parent="VBoxContainer/OverlayContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1096503903]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "2/6"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=303742846]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_go2tx")
+
+[node name="ShiftTimeLeft" type="Label" parent="VBoxContainer/OverlayContainer/PanelContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1721353134]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = ":25"
+
+[node name="MatchTimer" type="Label" parent="VBoxContainer/OverlayContainer/PanelContainer/VBoxContainer" unique_id=365266549]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 56
+text = "2:30"
+horizontal_alignment = 1
+
+[node name="BlueScore" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=2134570893]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o3bmw")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/BlueScore" unique_id=1380158796]
+layout_mode = 2
+
+[node name="BlueLabel" type="Label" parent="VBoxContainer/OverlayContainer/BlueScore/HBoxContainer" unique_id=972041639]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Blue"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/OverlayContainer/BlueScore/HBoxContainer" unique_id=1292577741]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "123"
+horizontal_alignment = 1
+
+[node name="BlueTeams" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=376331504]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k638o")
+
+[node name="RedAlliance" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams" unique_id=1802092871]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance" unique_id=1212000921]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+color = Color(0.003921569, 0.4, 0.7019608, 1)
+
+[node name="TeamTabs" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance" unique_id=1014166731]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TeamTab" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs" unique_id=1866761704]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab" unique_id=1613780219]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab" unique_id=234987655]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs" unique_id=858288153]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ccy8")
+
+[node name="TeamTab2" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/PanelContainer" unique_id=1644643489]
+layout_mode = 2
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2" unique_id=1544383071]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2" unique_id=1599620961]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="TeamTab3" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs" unique_id=135819144]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab3" unique_id=1310801073]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab3" unique_id=854125875]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("1_8o3k4")
+expand_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance" unique_id=801094924]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/MarginContainer" unique_id=471806429]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_fejdn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/MarginContainer/PanelContainer" unique_id=1412669870]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer" unique_id=164788653]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "56/100"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer" unique_id=124723652]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("3_1xhe7")
+expand_mode = 3

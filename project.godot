@@ -12,20 +12,25 @@ config_version=5
 
 config/name="FRC Simulator"
 config/version="0.1.0"
-run/main_scene="uid://bkc05rh417d3p"
+run/main_scene="uid://cjtqbepg22lv6"
 config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
-CommandScheduler="*uid://24a6dxpj3va3"
-ControlManager="*uid://behx3rvyc4d3f"
+GameManager="*uid://bd3y6g6jnxxqe"
+CameraSettings="*uid://d2kta6rw3dvm2"
 NetworkManager="*uid://bqqgtuv5hbclk"
+ScoringManager="*uid://bio0jcvxvaal7"
+Settings="*uid://b5waso8jv5ad7"
+MatchManager="*uid://dtmwllqfjob0h"
+ControlManager="*uid://behx3rvyc4d3f"
+CommandScheduler="*uid://24a6dxpj3va3"
 VRManager="*uid://3kassem4kte7"
+MatchScheduler="*uid://dwbw6ubw51kh1"
 XRToolsUserSettings="*uid://bqgb8i74tm0t"
 XRToolsRumbleManager="*uid://by853dk86g1qw"
-GameManager="*uid://bd3y6g6jnxxqe"
-ScoringManager="*uid://bio0jcvxvaal7"
 
 [display]
 
@@ -135,11 +140,13 @@ OpenMenu={
 RobotSubsystemRight={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194321,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 RobotSubsystemLeft={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
 
