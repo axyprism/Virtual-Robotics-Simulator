@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 const GAME_SCENE := "res://world/main.tscn"
+const ROBOT_EDITOR_SCENE := "res://ui/robot builder/robot_editor.tscn"
+const REPLAY_EDITOR_SCENE := "res://ui/replay editor/replay_editor.tscn"
 const GameEntryScene := preload("res://ui/main_menu/game_entry.tscn")
 
 @export var orbit_speed: float = 0.2
@@ -17,11 +19,13 @@ const GameEntryScene := preload("res://ui/main_menu/game_entry.tscn")
 @onready var start_menu: PanelContainer = $Control/StartMenu
 @onready var singleplayer_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/Singleplayer
 @onready var multiplayer_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/Multiplayer
+@onready var robot_builder_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/RobotEditor
+@onready var replay_editor_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/ReplayEditor
 @onready var options_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/Options
 @onready var quit_button: Button = $Control/StartMenu/MarginContainer/MenuButtons/Quit
 
 @onready var game_select: PanelContainer = $Control/GameSelect
-@onready var game_list: HBoxContainer = $Control/GameSelect/MarginContainer/VBoxContainer/ItemList/HBoxContainer
+@onready var game_list: VBoxContainer = $Control/GameSelect/MarginContainer/VBoxContainer/ItemList/HBoxContainer
 @onready var game_back_button: Button = $Control/GameSelect/MarginContainer/VBoxContainer/BackButton
 
 @onready var multiplayer_screen: PanelContainer = $Control/MultiplayerScreen
@@ -40,6 +44,7 @@ var _game_select_return_panel: Control
 
 
 func _ready() -> void:
+	
 	pivot.position = orbit_center
 	camera.position = Vector3(0, height, distance)
 	camera.look_at(pivot.global_position)
@@ -51,6 +56,8 @@ func _ready() -> void:
 
 	singleplayer_button.pressed.connect(_on_singleplayer_pressed)
 	multiplayer_button.pressed.connect(_on_multiplayer_pressed)
+	robot_builder_button.pressed.connect(_on_robot_builder_pressed)
+	replay_editor_button.pressed.connect(_on_replay_editor_pressed)
 	options_button.pressed.connect(_on_options_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	game_back_button.pressed.connect(func(): _show(_game_select_return_panel))
@@ -91,6 +98,11 @@ func _on_singleplayer_pressed() -> void:
 func _on_multiplayer_pressed() -> void:
 	_show(multiplayer_screen)
 
+func _on_robot_builder_pressed() -> void:
+	get_tree().change_scene_to_file(ROBOT_EDITOR_SCENE)
+	
+func _on_replay_editor_pressed() -> void:
+	get_tree().change_scene_to_file(REPLAY_EDITOR_SCENE)
 
 func _on_options_pressed() -> void:
 	_show(options_screen)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deuy4blk3dhot"
-path="res://.godot/imported/reefscape thumbnail.png-82c2fbbb4a3439d37964108a037a8a9c.ctex"
+uid="uid://1uvhro7m7ahf"
+path="res://.godot/imported/rebuilt thumbnail.png-5e632413b50937e949f297bea84685f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/reefscape thumbnail.png"
-dest_files=["res://.godot/imported/reefscape thumbnail.png-82c2fbbb4a3439d37964108a037a8a9c.ctex"]
+source_file="res://assets/games/rebuilt/textures/rebuilt thumbnail.png"
+dest_files=["res://.godot/imported/rebuilt thumbnail.png-5e632413b50937e949f297bea84685f6.ctex"]
 
 [params]
 

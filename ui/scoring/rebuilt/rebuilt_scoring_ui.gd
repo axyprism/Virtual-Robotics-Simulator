@@ -2,6 +2,17 @@ extends CanvasLayer
 class_name RebuiltUI
 @onready var qual_num: Label = $VBoxContainer/QualNumBox/QualificationNum
 
+@onready var red_team_labels: Array[Label] = [
+	$VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab/TeamNumber,
+	$VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2/TeamNumber,
+	$VBoxContainer/OverlayContainer/RedTeams/RedAlliance/TeamTabs/TeamTab3/TeamNumber,
+]
+@onready var blue_team_labels: Array[Label] = [
+	$VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab/TeamNumber,
+	$VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/PanelContainer/TeamTab2/TeamNumber,
+	$VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/TeamTabs/TeamTab3/TeamNumber,
+]
+
 @onready var red_progress_label: Label = $VBoxContainer/OverlayContainer/RedTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer/Label
 @onready var blue_progress_label: Label = $VBoxContainer/OverlayContainer/BlueTeams/RedAlliance/MarginContainer/PanelContainer/HBoxContainer/Label
 
@@ -18,6 +29,11 @@ func _ready() -> void:
 	_on_score_changed("red", ScoringManager.get_score("red"))
 	_on_score_changed("blue", ScoringManager.get_score("blue"))
 
+	MatchScheduler.current_match_changed.connect(func(_m): _refresh_match_info())
+	MatchScheduler.schedule_updated.connect(_refresh_match_info)
+	NetworkManager.player_profile_updated.connect(func(_id): _refresh_match_info())
+	_refresh_match_info()
+
 	var scoring := GameManager.current_scoring as RebuiltScoring
 	if scoring:
 		scoring.fuel_progress_changed.connect(_on_fuel_progress_changed)
@@ -27,6 +43,25 @@ func _ready() -> void:
 
 func set_qualification_label(text: String) -> void:
 	qual_num.text = text
+
+func _refresh_match_info() -> void:
+	var match_info = MatchScheduler.get_current_match()
+	if match_info == null:
+		set_qualification_label("No match in progress")
+		_fill_team_labels(red_team_labels, [])
+		_fill_team_labels(blue_team_labels, [])
+		return
+	set_qualification_label("Qualification %d of %d" % [match_info["match_number"], MatchScheduler.total_matches])
+	_fill_team_labels(red_team_labels, match_info["red"])
+	_fill_team_labels(blue_team_labels, match_info["blue"])
+
+func _fill_team_labels(labels: Array[Label], peer_ids: Array) -> void:
+	for i in labels.size():
+		if i >= peer_ids.size():
+			labels[i].text = "N/A"
+			continue
+		var profile: Dictionary = NetworkManager.player_profiles.get(peer_ids[i], {})
+		labels[i].text = profile.get("team_number", "N/A")
 
 func _on_score_changed(alliance: String, new_score: int) -> void:
 	if alliance == "red":

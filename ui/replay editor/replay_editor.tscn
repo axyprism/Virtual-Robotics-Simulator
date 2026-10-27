@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://dbay6gppqgtww"]
+
+[ext_resource type="PackedScene" uid="uid://6fijkfrnkwfo" path="res://assets/games/rebuilt/rebuilt_field.scn" id="1_7v8qw"]
+[ext_resource type="Script" uid="uid://c8ua2eqbu82gd" path="res://ui/replay editor/replay_editor.gd" id="1_xg8wk"]
+[ext_resource type="Script" uid="uid://bi1xod6djj5hy" path="res://ui/replay editor/keyframe_track.gd" id="3_7pg1o"]
+[ext_resource type="Script" uid="uid://dmirx6dbq3t1d" path="res://systems/replay/replay_player.gd" id="3_a26d7"]
+
+[node name="ReplayEditor" type="CanvasLayer" unique_id=13685539]
+script = ExtResource("1_xg8wk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1330920460]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Replay" type="Node3D" parent="." unique_id=1620807719]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Replay" unique_id=1658872215]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Replay/SubViewportContainer" unique_id=170823735]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Pivot" type="Node3D" parent="Replay/SubViewportContainer/SubViewport" unique_id=1120432667]
+
+[node name="Camera3D" type="Camera3D" parent="Replay/SubViewportContainer/SubViewport/Pivot" unique_id=932908601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1073012, 5.120832)
+
+[node name="FieldContainer" type="Node3D" parent="Replay" unique_id=1837737064]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.057, -0.919, 0.012)
+
+[node name="RebuiltField" parent="Replay/FieldContainer" unique_id=435958060 instance=ExtResource("1_7v8qw")]
+script = null
+
+[node name="Menu" type="Control" parent="." unique_id=398153090]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Menu" unique_id=26873405]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.11800001
+anchor_top = 0.86500007
+anchor_right = 0.822
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/PanelContainer" unique_id=1319373800]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/PanelContainer/MarginContainer" unique_id=83322573]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/PanelContainer/MarginContainer/VBoxContainer" unique_id=1135614381]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2118224567]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Play/Pause"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=857902786]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2052191415]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="KeyframeTrack" type="Control" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2082743884]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+script = ExtResource("3_7pg1o")
+metadata/_custom_type_script = "uid://bi1xod6djj5hy"
+
+[node name="TimeLabel" type="Label" parent="Menu/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1037891825]
+layout_mode = 2
+text = "0:00/5:00"
+
+[node name="ReplayFilePanel" type="PanelContainer" parent="Menu" unique_id=1488915867]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11800001
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/ReplayFilePanel" unique_id=686201258]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/ReplayFilePanel/MarginContainer" unique_id=411763476]
+layout_mode = 2
+
+[node name="Exit" type="Button" parent="Menu/ReplayFilePanel/MarginContainer/VBoxContainer" unique_id=1381789198]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Exit
+"
+
+[node name="HSeparator" type="HSeparator" parent="Menu/ReplayFilePanel/MarginContainer/VBoxContainer" unique_id=1897053063]
+layout_mode = 2
+
+[node name="SelectFile" type="OptionButton" parent="Menu/ReplayFilePanel/MarginContainer/VBoxContainer" unique_id=1946296537]
+layout_mode = 2
+
+[node name="LoadReplay" type="Button" parent="Menu/ReplayFilePanel/MarginContainer/VBoxContainer" unique_id=1854119343]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Load Replay"
+
+[node name="KeyframePanel" type="PanelContainer" parent="Menu" unique_id=158657101]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.822
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/KeyframePanel" unique_id=2060695491]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/KeyframePanel/MarginContainer" unique_id=353860191]
+layout_mode = 2
+
+[node name="AddKeyframe" type="Button" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=1935880154]
+layout_mode = 2
+text = "Add Keyframe"
+
+[node name="DeleteKeyframe" type="Button" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=1866144122]
+layout_mode = 2
+text = "Delete Keyframe"
+
+[node name="FollowKeyframes" type="Button" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=1547825096]
+layout_mode = 2
+toggle_mode = true
+text = "Follow Keyframes
+"
+
+[node name="HSeparator" type="HSeparator" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=863209781]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=469920434]
+layout_mode = 2
+text = "Edit Current Keyframe"
+
+[node name="Position" type="HBoxContainer" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=884820071]
+layout_mode = 2
+
+[node name="XLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=441244171]
+layout_mode = 2
+text = "X"
+
+[node name="X" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=887199290]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="YLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=175634985]
+layout_mode = 2
+text = "Y"
+
+[node name="Y" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=1741847328]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ZLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=1331241220]
+layout_mode = 2
+text = "Z"
+
+[node name="Z" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Position" unique_id=1576637277]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Rotation" type="HBoxContainer" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=88812944]
+layout_mode = 2
+
+[node name="XLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=1541249338]
+layout_mode = 2
+text = "X"
+
+[node name="X" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=2072706398]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="YLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=1806296326]
+layout_mode = 2
+text = "Y"
+
+[node name="Y" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=1412148667]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ZLabel" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=492015514]
+layout_mode = 2
+text = "Z"
+
+[node name="Z" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/Rotation" unique_id=317789107]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer" unique_id=121316498]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=922171149]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Field of View"
+
+[node name="Fov" type="SpinBox" parent="Menu/KeyframePanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=313303078]
+layout_mode = 2
+
+[node name="ReplayPlayer" type="Node" parent="." unique_id=644506196]
+script = ExtResource("3_a26d7")
+metadata/_custom_type_script = "uid://dmirx6dbq3t1d"

@@ -5,6 +5,13 @@ var _intake: IntakeSubsystem
 var _eject: bool
 var _stop_on_pickup: bool
 
+static func describe() -> Array[Dictionary]:
+	return [
+		{"name": "intake", "type": "subsystem", "class": IntakeSubsystem},
+		{"name": "eject", "type": "bool", "default": false},
+		{"name": "stop_on_pickup", "type": "bool", "default": true},
+	]
+
 func _init(intake: IntakeSubsystem,
 		eject: bool = false, stop_on_pickup: bool = true) -> void:
 	_intake         = intake

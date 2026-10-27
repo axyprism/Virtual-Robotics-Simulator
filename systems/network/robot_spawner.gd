@@ -136,6 +136,7 @@ func _do_spawn(data: Dictionary) -> Node:
 	robot.name = "Robot_" + str(id)
 	robot.position = data.get("position", Vector3.ZERO)
 	robot.set_multiplayer_authority(1)
+	robot.add_to_group("recordable")
 	if robot.has_method("set_owner_peer_id"):
 		robot.set_owner_peer_id(id)
 	robot.tree_exiting.connect(func(): robot_despawned.emit(id))

@@ -82,6 +82,7 @@ func _do_spawn(data: Dictionary) -> Node:
 	var id := int(data["owner_id"])
 	var index := int(data["spawn_index"]) % spawn_positions.size()
 	player.name = "Player_" + str(id)
+	player.add_to_group("recordable")
 	player.position = spawn_positions[index]
 	player_spawned.emit.call_deferred(player, id)
 	return player

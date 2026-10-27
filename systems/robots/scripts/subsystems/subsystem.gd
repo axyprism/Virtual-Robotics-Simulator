@@ -35,6 +35,12 @@ func get_robot() -> Node:
 func get_sync_nodes() -> Array[Node3D]:
 	return []
 	
+static func is_drivetrain() -> bool:
+	return false
+
+func get_mount() -> Node3D:
+	return self
+	
 func _sync_colliders() -> void:
 	pass
 

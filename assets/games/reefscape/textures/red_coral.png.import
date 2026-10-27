@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caejwk42oy34m"
-path="res://.godot/imported/BlueBalls.png-7ff55d241b7dacf80c0c63cab75d1a07.ctex"
+uid="uid://csormbjdhe5m7"
+path="res://.godot/imported/red_coral.png-9c83a15daf7ad3dfbe31746281cb0639.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/BlueBalls.png"
-dest_files=["res://.godot/imported/BlueBalls.png-7ff55d241b7dacf80c0c63cab75d1a07.ctex"]
+source_file="res://assets/games/reefscape/textures/red_coral.png"
+dest_files=["res://.godot/imported/red_coral.png-9c83a15daf7ad3dfbe31746281cb0639.ctex"]
 
 [params]
 

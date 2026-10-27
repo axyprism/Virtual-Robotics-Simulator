@@ -4,6 +4,12 @@ extends Command
 var _arm:    ArmSubsystem
 var _target: float
 
+static func describe() -> Array[Dictionary]:
+	return [
+		{"name": "arm", "type": "subsystem", "class": ArmSubsystem},
+		{"name": "angle_deg", "type": "float", "default": 0.0},
+	]
+
 func _init(arm: ArmSubsystem, angle_deg: float) -> void:
 	_arm    = arm
 	_target = angle_deg

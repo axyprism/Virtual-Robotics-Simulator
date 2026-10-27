@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgcroqs1eik2w"
-path="res://.godot/imported/RedBalls.png-d5335085c7d7fc8606e7c7e91c2b399a.ctex"
+uid="uid://df2d3wsleyu71"
+path="res://.godot/imported/red_algae.png-8e1038b60bb6b6bcd9bc3bfa83bc371c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/RedBalls.png"
-dest_files=["res://.godot/imported/RedBalls.png-d5335085c7d7fc8606e7c7e91c2b399a.ctex"]
+source_file="res://assets/games/reefscape/textures/red_algae.png"
+dest_files=["res://.godot/imported/red_algae.png-8e1038b60bb6b6bcd9bc3bfa83bc371c.ctex"]
 
 [params]
 

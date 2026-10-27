@@ -32,12 +32,13 @@ horizontal_alignment = 1
 [node name="TabContainer" type="TabContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1176000938]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 3
 tab_0/title = "Connect"
-tab_1/title = "Robots"
+tab_1/title = "Profile"
 tab_2/title = "Match Settings"
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=448062618]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -60,14 +61,32 @@ text = "Status"
 layout_mode = 2
 text = "Disconnect"
 
-[node name="RobotsTab" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=912806873]
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=126000322]
 visible = false
 layout_mode = 2
-accessibility_name = "Spawn Robot"
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 metadata/_tab_index = 1
-metadata/_tab_name = "Robots"
+metadata/_tab_name = "Profile"
 
-[node name="SpawnButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/RobotsTab" unique_id=1575792505]
+[node name="ProfileTab" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2" unique_id=912806873]
+layout_mode = 2
+accessibility_name = "Spawn Robot"
+
+[node name="TeamLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab" unique_id=1348005288]
+layout_mode = 2
+text = "Team: None"
+
+[node name="RobotLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab" unique_id=1652004358]
+layout_mode = 2
+text = "Current Robot: None"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab" unique_id=1035267883]
+layout_mode = 2
+
+[node name="SpawnButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab" unique_id=1575792505]
 layout_mode = 2
 text = "Edit Profile"
 
@@ -157,6 +176,36 @@ text = "Reset Queue"
 [node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/MatchSettings/MatchTab/HBoxContainer5" unique_id=1701574288]
 layout_mode = 2
 text = "Start Next Match"
+
+[node name="Record" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer" unique_id=465871276]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record" unique_id=238571255]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer" unique_id=228656028]
+layout_mode = 2
+
+[node name="StartRecording" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/HBoxContainer" unique_id=1123146274]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Start Recording"
+
+[node name="StopRecording" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/HBoxContainer" unique_id=391245213]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Stop Recording"
+
+[node name="RecordingName" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer" unique_id=533355282]
+layout_mode = 2
+placeholder_text = "Recording Name"
+
+[node name="SaveRecording" type="Button" parent="Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer" unique_id=592303508]
+layout_mode = 2
+text = "Save Recording"
 
 [node name="CloseHint" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=255346433]
 layout_mode = 2

@@ -68,6 +68,19 @@ func get_angle_fraction() -> float:
 func get_sync_nodes() -> Array[Node3D]:
 	return [_node3d]
 
+static func build() -> Node3D:
+	var node := ArmSubsystem.new()
+	node.name = "ArmSubsystem"
+	var arm_node := Node3D.new()
+	arm_node.name = "Arm"
+	node.add_child(arm_node)
+	node.arm = arm_node
+	return node
+
+
+func get_mount() -> Node3D:
+	return arm
+
 func _setup(manager: SubsystemManager) -> void:
 	super._setup(manager)
 	_chassis = manager.get_chassis_body()

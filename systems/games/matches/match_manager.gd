@@ -38,7 +38,6 @@ func start_match() -> void:
 		return
 	if NetworkManager.is_networked() and multiplayer.is_server():
 		_rpc_start_match.rpc()
-		GameManager.current_field.reset_field()
 	else:
 		_begin_match()
 
@@ -63,7 +62,12 @@ func _begin_match() -> void:
 		autonomous_time = game.autonomous_time
 		teleop_time = game.teleop_time
 		endgame_time = game.endgame_time
-	
+	if multiplayer.is_server():
+		GameManager.current_field.reset_field()
+	if GameManager.current_scoring:
+		GameManager.current_scoring.reset()
+	ScoringManager.reset_scores()
+
 	current_phase = Phase.AUTONOMOUS
 	time_left = autonomous_time
 	running = true
@@ -99,12 +103,24 @@ func stop_match() -> void:
 	running = false
 	current_phase = Phase.POST_MATCH
 	emit_signal("phase_changed", current_phase)
+	_record_results()
 	emit_signal("match_ended")
 	in_gap = true
-	if GameManager.current_scoring:
-		GameManager.current_scoring.reset()
 	gap_time_left = match_gap_seconds
 	emit_signal("gap_time_updated", gap_time_left)
+
+func _record_results() -> void:
+	if NetworkManager.is_networked() and not multiplayer.is_server():
+		return
+	var match_info = MatchScheduler.get_current_match()
+	if match_info == null or match_info["status"] == MatchScheduler.STATUS_COMPLETE:
+		return
+	RankingManager.record_match(match_info["red"], match_info["blue"])
+	MatchScheduler.complete_current_match({
+		"winner": ScoringManager.get_winner(),
+		"red": ScoringManager.get_score("red"),
+		"blue": ScoringManager.get_score("blue"),
+	})
 
 func _process(delta: float) -> void:
 	if in_gap:

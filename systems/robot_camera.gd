@@ -2,7 +2,7 @@ extends Node3D
 
 @export var default_distance: float = 5.0
 @export var min_distance: float = 1.5
-@export var max_distance: float = 12.0
+@export var max_distance: float = 6.0
 @export var pivot_height: float = 0.5
 @export var orbit_sensitivity: float = 0.005
 @export var zoom_sensitivity: float = 0.5

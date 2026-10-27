@@ -1,7 +1,10 @@
 extends CanvasLayer
 
+
 @onready var status_label: Label = $Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab/StatusLabel
-@onready var spawn_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/RobotsTab/SpawnButton
+@onready var team_label: Label = $Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab/TeamLabel
+@onready var robot_label: Label = $Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab/RobotLabel
+@onready var spawn_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer2/ProfileTab/SpawnButton
 @onready var disconnect_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/MarginContainer/ConnectTab/DisconnectButton
 
 const ROBOT_SELECT_SCENE := preload("res://ui/game ui/robot_select.tscn")
@@ -17,11 +20,32 @@ var _is_open: bool = false
 @onready var _reset_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/MatchSettings/MatchTab/HBoxContainer5/ResetButton
 @onready var _start_match_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/MatchSettings/MatchTab/HBoxContainer5/Button
 
+@onready var _start_recording_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/HBoxContainer/StartRecording
+@onready var _stop_recording_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/HBoxContainer/StopRecording
+@onready var _recording_name: LineEdit = $Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/RecordingName
+@onready var _save_recording_button: Button = $Panel/MarginContainer/VBoxContainer/TabContainer/Record/VBoxContainer/SaveRecording
+
 var _host_only_controls: Array[Control] = []
 var _suppress_next_close_click: bool = false
 var _popup_open_count: int = 0
 
 func _ready() -> void:
+	
+	var path = "user://"
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			if dir.current_is_dir():
+				print("Directory: " + file_name)
+			else:
+				print("File: " + file_name)
+			file_name = dir.get_next()
+	else:
+		push_error("An error occurred when trying to access the path: " + path)
+
 	visible = false
 	disconnect_button.pressed.connect(_on_disconnect_pressed)
 	spawn_button.pressed.connect(_on_spawn_pressed)
@@ -35,6 +59,11 @@ func _ready() -> void:
 	_setup_match_tab()
 	MatchScheduler.config_changed.connect(_refresh_match_config_ui)
 	_refresh_match_config_ui()
+	
+	_start_recording_button.pressed.connect(ReplayRecorder.start_recording)
+	_stop_recording_button.pressed.connect(ReplayRecorder.stop_recording)
+	_save_recording_button.pressed.connect(func(): ReplayRecorder.save_recording("user://replays/" + _recording_name.text + ".tres"))
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("OpenMenu"):
@@ -84,6 +113,8 @@ func _on_profile_confirmed(robot_name: String, team_number: String) -> void:
 	NetworkManager.set_profile(robot_name, team_number)
 	_set_status("Profile saved: team " + team_number + ", " + robot_name)
 	_close_robot_select()
+	team_label.text = "Team: " + team_number
+	robot_label.text = "Current Robot: " + robot_name
 
 func _close_robot_select() -> void:
 	if _robot_select != null:

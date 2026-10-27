@@ -79,9 +79,9 @@ func setup_viewport(viewport: SubViewport, scene: PackedScene) -> void:
 	var sync = robot.get_node_or_null("Sync")
 	if sync:
 		sync.queue_free()
-	var subsystems := robot.get_node_or_null("SubsystemManager")
-	if subsystems:
-		CommandScheduler.unregister_manager(subsystems)
+	for node in robot.find_children("*", "", true, false):
+		if node is SubsystemManager:
+			CommandScheduler.unregister_manager(node)
 	var bounds := get_bounds(robot)
 	var center := bounds.get_center()
 	var radius := maxf(bounds.size.length() * 0.5, 0.5)

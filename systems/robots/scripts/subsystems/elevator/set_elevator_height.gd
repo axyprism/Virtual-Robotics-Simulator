@@ -4,6 +4,12 @@ extends Command
 var _elevator: ElevatorSubsystem
 var _target: float
 
+static func describe() -> Array[Dictionary]:
+	return [
+		{"name": "elevator", "type": "subsystem", "class": ElevatorSubsystem},
+		{"name": "height", "type": "float", "default": 0.0},
+	]
+
 func _init(elevator: ElevatorSubsystem, height: float) -> void:
 	_elevator = elevator
 	_target = height

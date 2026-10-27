@@ -1,0 +1,370 @@
+[gd_scene format=3 uid="uid://b043qi8bs1hu8"]
+
+[ext_resource type="Texture2D" uid="uid://df2d3wsleyu71" path="res://assets/games/reefscape/textures/red_algae.png" id="2_3xgkk"]
+[ext_resource type="Texture2D" uid="uid://csormbjdhe5m7" path="res://assets/games/reefscape/textures/red_coral.png" id="3_wpcxt"]
+[ext_resource type="Texture2D" uid="uid://br7fy12oep81h" path="res://assets/games/reefscape/textures/blue_coral.png" id="4_5nm77"]
+[ext_resource type="Texture2D" uid="uid://t4ojw38vyaet" path="res://assets/games/reefscape/textures/blue_algae.png" id="5_cl0l6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_femgq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.5137255, 0.05490196, 0.07058824, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmw3y"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aiw5"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+content_margin_bottom = 0.0
+bg_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0udo"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8eai"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_052ba"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.003921569, 0.4, 0.7019608, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_titg2"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.25490198, 0.44705883, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0kfb"]
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgwx2"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.003921569, 0.4, 0.7019608, 1)
+corner_detail = 5
+
+[node name="Control" type="CanvasLayer" unique_id=1862707313]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2029498376]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="QualNumBox" type="HBoxContainer" parent="VBoxContainer" unique_id=1432137880]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="VBoxContainer/QualNumBox" unique_id=1939766711]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "FIRST DIVE"
+
+[node name="QualificationNum" type="Label" parent="VBoxContainer/QualNumBox" unique_id=1148742344]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "Qualification 1 of 1"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/QualNumBox" unique_id=821545673]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "REEFSCAPE"
+horizontal_alignment = 2
+
+[node name="OverlayContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=821183201]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RedInfo" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=601680425]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_femgq")
+
+[node name="RedAlliance" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/RedInfo" unique_id=765853331]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance" unique_id=1675702703]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+color = Color(0.92941177, 0.10980392, 0.14117648, 1)
+
+[node name="Teams" type="PanelContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance" unique_id=1759807775]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmw3y")
+
+[node name="TeamTabs" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/Teams" unique_id=1127814483]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/Teams/TeamTabs" unique_id=168573286]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TeamNumber2" type="Label" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/Teams/TeamTabs" unique_id=1763599846]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TeamNumber3" type="Label" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/Teams/TeamTabs" unique_id=557242943]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance" unique_id=2303643]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer" unique_id=924438028]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AlgaeScored" type="PanelContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer" unique_id=624824044]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8aiw5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored" unique_id=1259150627]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored/HBoxContainer" unique_id=973135848]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("2_3xgkk")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored/HBoxContainer" unique_id=534560128]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="CoralRP" type="PanelContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer" unique_id=1233446224]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8aiw5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP" unique_id=1366230798]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP/HBoxContainer" unique_id=833170364]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("3_wpcxt")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/RedInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP/HBoxContainer" unique_id=54082343]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 28
+text = "0/4"
+
+[node name="RedScore" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=655536194]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b0udo")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/RedScore" unique_id=1023644557]
+layout_mode = 2
+
+[node name="RedLabel" type="Label" parent="VBoxContainer/OverlayContainer/RedScore/HBoxContainer" unique_id=1684148138]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Red"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/OverlayContainer/RedScore/HBoxContainer" unique_id=569683441]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "123"
+horizontal_alignment = 1
+
+[node name="Timer" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=210785350]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l8eai")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/Timer" unique_id=2076097720]
+layout_mode = 2
+
+[node name="Panel" type="TextureRect" parent="VBoxContainer/OverlayContainer/Timer/VBoxContainer" unique_id=656791101]
+layout_mode = 2
+
+[node name="MatchTimer" type="Label" parent="VBoxContainer/OverlayContainer/Timer/VBoxContainer" unique_id=365266549]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 56
+text = "2:30"
+horizontal_alignment = 1
+
+[node name="BlueScore" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=715389613]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_052ba")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/BlueScore" unique_id=736655035]
+layout_mode = 2
+
+[node name="RedLabel" type="Label" parent="VBoxContainer/OverlayContainer/BlueScore/HBoxContainer" unique_id=109936442]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Red"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/OverlayContainer/BlueScore/HBoxContainer" unique_id=716687724]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "123"
+horizontal_alignment = 1
+
+[node name="BlueInfo" type="PanelContainer" parent="VBoxContainer/OverlayContainer" unique_id=1727560210]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_titg2")
+
+[node name="RedAlliance" type="VBoxContainer" parent="VBoxContainer/OverlayContainer/BlueInfo" unique_id=2108566047]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance" unique_id=1679226254]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+color = Color(0.003921569, 0.4, 0.7019608, 1)
+
+[node name="Teams" type="PanelContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance" unique_id=1561667917]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i0kfb")
+
+[node name="TeamTabs" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/Teams" unique_id=933349654]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TeamNumber" type="Label" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/Teams/TeamTabs" unique_id=1251244728]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TeamNumber2" type="Label" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/Teams/TeamTabs" unique_id=3244079]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="TeamNumber3" type="Label" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/Teams/TeamTabs" unique_id=1510187168]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "1234"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance" unique_id=1576960533]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer" unique_id=1121472306]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CoralRP" type="PanelContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer" unique_id=899999265]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgwx2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP" unique_id=1711975682]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP/HBoxContainer" unique_id=1226046604]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 28
+text = "0/4"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/CoralRP/HBoxContainer" unique_id=553697243]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("4_5nm77")
+expand_mode = 3
+
+[node name="AlgaeScored" type="PanelContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer" unique_id=720807062]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vgwx2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored" unique_id=1858772055]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored/HBoxContainer" unique_id=965180475]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/OverlayContainer/BlueInfo/RedAlliance/MarginContainer/HBoxContainer/AlgaeScored/HBoxContainer" unique_id=621099527]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("5_cl0l6")
+expand_mode = 3

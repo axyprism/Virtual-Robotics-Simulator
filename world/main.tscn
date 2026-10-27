@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://blgwkue1s3e8p" path="res://systems/robots/scenes/reefscape/reefscape.tscn" id="6_04q08"]
 [ext_resource type="Script" uid="uid://ckpsql6sn876x" path="res://systems/network/robot_spawner.gd" id="6_j5wjh"]
 [ext_resource type="Script" uid="uid://cp0xht2nqm4bp" path="res://systems/network/player_spawner.gd" id="6_ryrav"]
+[ext_resource type="PackedScene" uid="uid://brgiq8ns6hg31" path="res://test.tscn" id="7_qnd6n"]
 [ext_resource type="PackedScene" uid="uid://wra2xieb1da5" path="res://ui/game ui/escape_menu.tscn" id="7_vef74"]
 [ext_resource type="PackedScene" uid="uid://dxrrl85gnr68m" path="res://systems/robots/scenes/rebuilt/254.tscn" id="7_vrojb"]
+[ext_resource type="PackedScene" uid="uid://dbkna8i23h48e" path="res://test2.tscn" id="8_op3e8"]
 [ext_resource type="PackedScene" uid="uid://cfxtq7kc26l0s" path="res://ui/game ui/field_billboard.tscn" id="10_qnd6n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e2o6t"]
@@ -77,7 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.010192, 0)
 [node name="RobotSpawner" type="Node" parent="." unique_id=1063991627]
 script = ExtResource("6_j5wjh")
 spawn_root_path = NodePath("../Robots")
-registered_scenes = Array[PackedScene]([ExtResource("7_vrojb"), ExtResource("5_gu74f"), ExtResource("6_04q08")])
+registered_scenes = Array[PackedScene]([ExtResource("7_vrojb"), ExtResource("5_gu74f"), ExtResource("6_04q08"), ExtResource("7_qnd6n"), ExtResource("8_op3e8")])
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="RobotSpawner" unique_id=1157294267]
 spawn_path = NodePath("../../Robots")

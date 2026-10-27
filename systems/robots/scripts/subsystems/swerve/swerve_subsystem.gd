@@ -31,6 +31,56 @@ var _desired_angular: float = 0.0
 
 var _was_moving: bool = false
 
+const MODULES: Dictionary = {
+	"FL": [Vector3(-0.27, -0.15, 0.27), Vector2(-0.4, 0.4)],
+	"FR": [Vector3(-0.27, -0.15, -0.27), Vector2(-0.4, -0.4)],
+	"BL": [Vector3(0.27, -0.15, 0.27), Vector2(0.4, 0.4)],
+	"BR": [Vector3(0.27, -0.15, -0.27), Vector2(0.4, -0.4)],
+}
+
+
+static func is_drivetrain() -> bool:
+	return true
+
+
+static func build() -> Node3D:
+	var body := RigidBody3D.new()
+	body.set_script(SwerveSubsystem)
+	body.mass = 120.0
+	var robot_camera = load("res://systems/robots/scenes/robot_camera.tscn")
+	if robot_camera:
+		var robot_camera_copy = robot_camera.instantiate()
+		body.add_child(robot_camera_copy)
+	var paths: Array[NodePath] = []
+	var wheel_shape := SphereShape3D.new()
+	wheel_shape.radius = 0.07
+	for key in MODULES:
+		var module := SwerveModuleSubsystem.new()
+		module.name = key
+		module.subsystem_name = key
+		module.position = MODULES[key][0]
+		module.module_offset = MODULES[key][1]
+		module.wheel_collider_shape = wheel_shape
+		var steer := Node3D.new()
+		steer.name = "SteerVisual"
+		var wheel := MeshInstance3D.new()
+		wheel.name = "WheelVisual"
+		var cylinder := CylinderMesh.new()
+		cylinder.top_radius = 0.07
+		cylinder.bottom_radius = 0.07
+		cylinder.height = 0.04
+		wheel.mesh = cylinder
+		wheel.rotation_degrees = Vector3(0, 0, 90)
+		steer.add_child(wheel)
+		module.add_child(steer)
+		module.wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+		body.add_child(module)
+		paths.append(NodePath(key))
+	body.set("module_paths", paths)
+	var chassis := RobotParts.add_primitive(body, "Box", Vector3(0.686, 0.1, 0.686), Color(0.64, 0.64, 0.64), true)
+	chassis.position = Vector3(0, -0.07, 0)
+	RobotParts.sync_collision(chassis)
+	return body
 
 func _setup(manager: SubsystemManager) -> void:
 	super._setup(manager)
@@ -46,7 +96,7 @@ func _setup(manager: SubsystemManager) -> void:
 	_body.gravity_scale = 1.0
 	_body.angular_damp = 6.0
 	_body.linear_damp = 2.0
-	_body.continuous_cd = true
+	_body.continuous_cd = false
 
 	var chassis_material := PhysicsMaterial.new()
 	chassis_material.friction = 0.0
@@ -63,10 +113,6 @@ func _setup(manager: SubsystemManager) -> void:
 	drive_mode = _camera_drive_mode()
 	CameraSettings.camera_mode_changed.connect(_on_camera_mode_changed)
 
-	# The "Sync" MultiplayerSynchronizer already replicates position/
-	# rotation/velocity, but without freezing, local physics keeps
-	# simulating (gravity, collisions) in between sync ticks and fights
-	# those incoming values, causing jitter. This is the one piece missing.
 	if not _body.is_multiplayer_authority():
 		_body.freeze = true
 		_body.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
@@ -78,8 +124,6 @@ func _camera_drive_mode() -> DriveMode:
 	return DriveMode.FIELD_CENTRIC if CameraSettings.is_advanced() else DriveMode.ROBOT_CENTRIC
 
 func _on_camera_mode_changed(_mode: CameraSettings.CameraMode) -> void:
-	# Only swap the "active steering" modes; don't fight a lock or idle
-	# state someone else put us in.
 	if drive_mode == DriveMode.FIELD_CENTRIC or drive_mode == DriveMode.ROBOT_CENTRIC:
 		drive_mode = _camera_drive_mode()
 
@@ -151,7 +195,7 @@ func update(delta: float) -> void:
 	target_velocity.x = lerpf(_body.linear_velocity.x, world_linear.x, velocity_smoothing)
 	target_velocity.z = lerpf(_body.linear_velocity.z, world_linear.z, velocity_smoothing)
 	
-	var max_accel := 5.0
+	var max_accel := 15.0
 	var max_angular_accel := 20.0
 
 	var linear_error := target_velocity - _body.linear_velocity

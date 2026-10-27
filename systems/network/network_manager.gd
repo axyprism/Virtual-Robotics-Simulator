@@ -33,6 +33,14 @@ func _ready() -> void:
 	upnp_refresh_timer.wait_time = UPNP_REFRESH_INTERVAL
 	upnp_refresh_timer.timeout.connect(_refresh_upnp)
 	add_child(upnp_refresh_timer)
+	get_tree().set_auto_accept_quit(false)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("NetworkManager: close request received")
+		if upnp_port != -1:
+			close_upnp()
+		get_tree().quit()
 
 func host_local() -> void:
 	var peer := OfflineMultiplayerPeer.new()
@@ -41,10 +49,12 @@ func host_local() -> void:
 	server_created.emit.call_deferred()
 
 func host(port: int = DEFAULT_PORT) -> void:
+	print("NetworkManager: hosting, requested port %d" % port)
 	var actual_port := _try_create_server(port)
 	if actual_port == -1:
 		push_error("NetworkManager: failed to create server, no free port found")
 		return
+	print("NetworkManager: ENet server listening on port %d" % actual_port)
 	players[1] = { "id": 1 }
 	server_created.emit.call_deferred()
 	upnp_port = actual_port
@@ -69,14 +79,19 @@ func _start_upnp_thread(port: int) -> void:
 	upnp_thread.start(_upnp_setup_threaded.bind(port))
 
 func _upnp_setup_threaded(port: int) -> void:
+	print("NetworkManager: UPnP thread started for port %d" % port)
 	var local_upnp := UPNP.new()
 	var discover_result := local_upnp.discover()
 	if discover_result != UPNP.UPNP_RESULT_SUCCESS:
 		call_deferred("_on_upnp_result", false, "UPnP discovery failed: " + str(discover_result), null)
 		return
+	print("NetworkManager: UPnP gateway discovered")
 	if not local_upnp.get_gateway() or not local_upnp.get_gateway().is_valid_gateway():
 		call_deferred("_on_upnp_result", false, "No valid UPnP gateway found", null)
 		return
+	var del_udp := local_upnp.delete_port_mapping(port, "UDP")
+	var del_tcp := local_upnp.delete_port_mapping(port, "TCP")
+	print("NetworkManager: cleared existing mappings (UDP: %s, TCP: %s)" % [del_udp, del_tcp])
 	var map_udp := local_upnp.add_port_mapping(port, port, "godot_game_udp", "UDP")
 	var map_tcp := local_upnp.add_port_mapping(port, port, "godot_game_tcp", "TCP")
 	if map_udp != UPNP.UPNP_RESULT_SUCCESS or map_tcp != UPNP.UPNP_RESULT_SUCCESS:
@@ -85,6 +100,7 @@ func _upnp_setup_threaded(port: int) -> void:
 	call_deferred("_on_upnp_result", true, "Port %d opened successfully" % port, local_upnp)
 
 func _on_upnp_result(success: bool, message: String, result_upnp: UPNP) -> void:
+	print("NetworkManager: UPnP result - %s" % message)
 	if success:
 		upnp = result_upnp
 	upnp_completed.emit(success, message)
@@ -95,40 +111,50 @@ func _refresh_upnp() -> void:
 	if not multiplayer.is_server() or upnp_port == -1:
 		upnp_refresh_timer.stop()
 		return
+	print("NetworkManager: refreshing UPnP mapping on port %d" % upnp_port)
 	_start_upnp_thread(upnp_port)
 
 func close_upnp() -> void:
+	print("NetworkManager: closing UPnP mapping on port %d" % upnp_port)
 	upnp_refresh_timer.stop()
 	if upnp_thread and upnp_thread.is_started():
 		upnp_thread.wait_to_finish()
 	if upnp and upnp_port != -1:
-		upnp.delete_port_mapping(upnp_port, "UDP")
-		upnp.delete_port_mapping(upnp_port, "TCP")
+		var del_udp := upnp.delete_port_mapping(upnp_port, "UDP")
+		var del_tcp := upnp.delete_port_mapping(upnp_port, "TCP")
+		print("NetworkManager: UPnP mapping deleted (UDP: %s, TCP: %s)" % [del_udp, del_tcp])
 	upnp = null
 	upnp_port = -1
 
 func get_public_ip() -> void:
+	print("NetworkManager: requesting public IP")
 	var http := HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(_on_public_ip_response.bind(http))
-	http.request("https://api.ipify.org")
+	var err := http.request("https://api.ipify.org")
+	if err != OK:
+		print("NetworkManager: public IP request failed to start, error %s" % err)
 
-func _on_public_ip_response(_result, _code, _headers, body: PackedByteArray, http: HTTPRequest) -> void:
+func _on_public_ip_response(_result, code: int, _headers, body: PackedByteArray, http: HTTPRequest) -> void:
 	var ip := body.get_string_from_utf8()
+	print("NetworkManager: public IP response, HTTP %d, ip %s" % [code, ip])
 	public_ip_received.emit(ip)
 	http.queue_free()
 
 func join(ip: String, port: int = DEFAULT_PORT) -> void:
+	print("NetworkManager: joining %s:%d" % [ip, port])
 	var peer := ENetMultiplayerPeer.new()
 	var err := peer.create_client(ip, port)
 	if err != OK:
+		push_error("NetworkManager: failed to create client: " + str(err))
 		join_failed.emit("Failed to create client: " + str(err))
 		return
 	multiplayer.multiplayer_peer = peer
 
 func disconnect_from_game() -> void:
+	print("NetworkManager: disconnect_from_game called")
 	session_ended.emit()
-	if multiplayer.is_server():
+	if upnp_port != -1:
 		close_upnp()
 	multiplayer.multiplayer_peer = null
 	players.clear()
@@ -155,6 +181,7 @@ func get_my_id() -> int:
 	return multiplayer.get_unique_id()
 
 func _on_peer_connected(peer_id: int) -> void:
+	print("NetworkManager: peer connected, id %d" % peer_id)
 	players[peer_id] = { "id": peer_id }
 	player_connected.emit(peer_id)
 	if multiplayer.is_server():
@@ -163,18 +190,22 @@ func _on_peer_connected(peer_id: int) -> void:
 			_rpc_sync_profile.rpc_id(peer_id, existing_id, profile["robot"], profile["team_number"])
 
 func _on_peer_disconnected(peer_id: int) -> void:
+	print("NetworkManager: peer disconnected, id %d" % peer_id)
 	players.erase(peer_id)
 	player_disconnected.emit(peer_id)
 
 func _on_connected_to_server() -> void:
+	print("NetworkManager: connected to server, my id %d" % get_my_id())
 	players[get_my_id()] = { "id": get_my_id() }
 	join_succeeded.emit()
 
 func _on_connection_failed() -> void:
+	print("NetworkManager: connection failed")
 	multiplayer.multiplayer_peer = null
 	join_failed.emit("Connection timed out")
 	
 func _on_server_disconnected() -> void:
+	print("NetworkManager: server disconnected")
 	session_ended.emit()
 	multiplayer.multiplayer_peer = null
 	players.clear()

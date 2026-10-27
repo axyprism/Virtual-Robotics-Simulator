@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dbkna8i23h48e"]
+
+[ext_resource type="Script" uid="uid://dx7nwqll60dpo" path="res://ui/robot builder/exported_robot.gd" id="1_kshcw"]
+[ext_resource type="Script" uid="uid://d2mii5mgv5hjj" path="res://systems/robots/scripts/subsystems/subsystem_manager.gd" id="2_3uwny"]
+[ext_resource type="Script" uid="uid://dyeg8kf4gbpu1" path="res://systems/robots/scripts/subsystems/swerve/swerve_subsystem.gd" id="3_1tos2"]
+[ext_resource type="Script" uid="uid://eskffcak68b4" path="res://systems/robots/scripts/subsystems/swerve/swerve_module_subsystem.gd" id="4_byp6q"]
+[ext_resource type="PackedScene" uid="uid://bw1c3uhpo66xw" path="res://systems/robots/scenes/robot_camera.tscn" id="4_kshcw"]
+[ext_resource type="Script" uid="uid://xo80q82i831b" path="res://systems/robots/scripts/script_runner.gd" id="5_qugwh"]
+[ext_resource type="Script" uid="uid://dnnt3v6ocbuux" path="res://systems/robots/scripts/script_binding.gd" id="6_i13el"]
+[ext_resource type="Script" uid="uid://dd4qdtlfcr48n" path="res://systems/robots/scripts/robot_script.gd" id="7_teiu0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wvq8v"]
+radius = 0.07
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_4kssh"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.04
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d3di1"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.04
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fp32p"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.04
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8ms58"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci8yv"]
+albedo_color = Color(0.64, 0.64, 0.64, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ufh50"]
+size = Vector3(0.686, 0.1, 0.686)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qj0rc"]
+size = Vector3(0.686, 0.1, 0.686)
+
+[sub_resource type="Resource" id="Resource_x08rr"]
+script = ExtResource("7_teiu0")
+
+[node name="Robot" type="Node3D" unique_id=1571951054]
+script = ExtResource("1_kshcw")
+
+[node name="SubsystemManager" type="Node" parent="." unique_id=924901203 groups=["subsystem_managers"]]
+script = ExtResource("2_3uwny")
+metadata/_custom_type_script = "uid://d2mii5mgv5hjj"
+
+[node name="@RigidBody3D@262" type="RigidBody3D" parent="SubsystemManager" unique_id=1206588407]
+mass = 120.0
+script = ExtResource("3_1tos2")
+module_paths = Array[NodePath]([NodePath("FL"), NodePath("FR"), NodePath("BL"), NodePath("BR")])
+subsystem_id = &"Swerve"
+
+[node name="RobotCamera" parent="SubsystemManager/@RigidBody3D@262" unique_id=2772515 instance=ExtResource("4_kshcw")]
+
+[node name="FL" type="Node3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=840163202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, -0.15, 0.27)
+script = ExtResource("4_byp6q")
+module_offset = Vector2(-0.4, 0.4)
+wheel_collider_shape = SubResource("SphereShape3D_wvq8v")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"FL"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/@RigidBody3D@262/FL" unique_id=290763457]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/@RigidBody3D@262/FL/SteerVisual" unique_id=1414482563]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_4kssh")
+
+[node name="FR" type="Node3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=1673070021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, -0.15, -0.27)
+script = ExtResource("4_byp6q")
+module_offset = Vector2(-0.4, -0.4)
+wheel_collider_shape = SubResource("SphereShape3D_wvq8v")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"FR"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/@RigidBody3D@262/FR" unique_id=1499831660]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/@RigidBody3D@262/FR/SteerVisual" unique_id=1849284410]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_d3di1")
+
+[node name="BL" type="Node3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=2085947742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, -0.15, 0.27)
+script = ExtResource("4_byp6q")
+module_offset = Vector2(0.4, 0.4)
+wheel_collider_shape = SubResource("SphereShape3D_wvq8v")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"BL"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/@RigidBody3D@262/BL" unique_id=127160393]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/@RigidBody3D@262/BL/SteerVisual" unique_id=1717569936]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_fp32p")
+
+[node name="BR" type="Node3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=1983338964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, -0.15, -0.27)
+script = ExtResource("4_byp6q")
+module_offset = Vector2(0.4, -0.4)
+wheel_collider_shape = SubResource("SphereShape3D_wvq8v")
+wheel_visual_path = NodePath("SteerVisual/WheelVisual")
+subsystem_name = &"BR"
+
+[node name="SteerVisual" type="Node3D" parent="SubsystemManager/@RigidBody3D@262/BR" unique_id=99238951]
+
+[node name="WheelVisual" type="MeshInstance3D" parent="SubsystemManager/@RigidBody3D@262/BR/SteerVisual" unique_id=1017501594]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_8ms58")
+
+[node name="Box" type="MeshInstance3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=1008452211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, 0)
+material_override = SubResource("StandardMaterial3D_ci8yv")
+mesh = SubResource("BoxMesh_ufh50")
+metadata/kind = "primitive"
+metadata/shape = "Box"
+metadata/size = Vector3(0.686, 0.1, 0.686)
+metadata/color = Color(0.64, 0.64, 0.64, 1)
+metadata/collision = true
+
+[node name="BoxCollision" type="CollisionShape3D" parent="SubsystemManager/@RigidBody3D@262" unique_id=574964497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, 0)
+shape = SubResource("BoxShape3D_qj0rc")
+
+[node name="ScriptRunner" type="Node" parent="." unique_id=708283748]
+script = ExtResource("5_qugwh")
+robot_script = SubResource("Resource_x08rr")

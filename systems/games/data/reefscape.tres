@@ -1,10 +1,21 @@
 [gd_resource type="Resource" script_class="GameData" format=3 uid="uid://d4apxdqjk8bbi"]
 
-[ext_resource type="Script" uid="uid://bmxv8wcd54v27" path="res://scripts/systems/games/game_data.gd" id="1_34yra"]
-[ext_resource type="Texture2D" uid="uid://deuy4blk3dhot" path="res://assets/images/reefscape thumbnail.png" id="2_en3pi"]
+[ext_resource type="PackedScene" uid="uid://blgwkue1s3e8p" path="res://systems/robots/scenes/reefscape/reefscape.tscn" id="1_4sdb5"]
+[ext_resource type="Script" uid="uid://bmxv8wcd54v27" path="res://systems/games/data/game_data.gd" id="1_34yra"]
+[ext_resource type="PackedScene" uid="uid://ygoh85jw7bi2" path="res://assets/games/reefscape/reefscape_field.scn" id="2_c7hbu"]
+[ext_resource type="PackedScene" path="res://test2.tscn" id="2_tmgsv"]
+[ext_resource type="PackedScene" uid="uid://bpsuuc1fj8bmg" path="res://systems/games/scoring/reefscape/reefscape_scoring.scn" id="5_c7hbu"]
+[ext_resource type="Texture2D" uid="uid://deuy4blk3dhot" path="res://assets/games/reefscape/textures/reefscape thumbnail.png" id="5_fjs5m"]
+[ext_resource type="PackedScene" uid="uid://b043qi8bs1hu8" path="res://ui/scoring/reefscape/reefscape_scoring_ui.tscn" id="6_tmgsv"]
 
 [resource]
 script = ExtResource("1_34yra")
 game_name = "Reefscape"
-thumbnail = ExtResource("2_en3pi")
+thumbnail = ExtResource("5_fjs5m")
+field_scene = ExtResource("2_c7hbu")
+scoring_scene = ExtResource("5_c7hbu")
+ui_scene = ExtResource("6_tmgsv")
+allowed_robots = Array[PackedScene]([ExtResource("1_4sdb5"), ExtResource("2_tmgsv")])
+red_spawn_positions = Array[Vector3]([Vector3(1.2, -2, -2), Vector3(1.2, -2, 0), Vector3(1.2, -2, 2)])
+blue_spawn_positions = Array[Vector3]([Vector3(-1.2, -2, 2), Vector3(-1.2, -2, 0), Vector3(-1.2, -2, -2)])
 metadata/_custom_type_script = "uid://bmxv8wcd54v27"

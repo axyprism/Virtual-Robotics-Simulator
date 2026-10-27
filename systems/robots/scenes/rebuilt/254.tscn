@@ -132,7 +132,7 @@ script = ExtResource("2_i4hym")
 [node name="SwerveSubsystem" type="RigidBody3D" parent="SubsystemManager" unique_id=1737983171]
 mass = 120.0
 script = ExtResource("3_lodlb")
-max_translation_speed = 12.0
+max_translation_speed = 4.0
 max_rotation_speed = 6.0
 module_paths = Array[NodePath]([NodePath("FL"), NodePath("FR"), NodePath("BL"), NodePath("BR")])
 

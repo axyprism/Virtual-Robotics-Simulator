@@ -3,6 +3,13 @@ extends Command
 
 var _swerve: SwerveSubsystem
 
+static func describe() -> Array[Dictionary]:
+	return [
+		{"name": "intake", "type": "subsystem", "class": IntakeSubsystem},
+		{"name": "eject", "type": "bool", "default": false},
+		{"name": "stop_on_pickup", "type": "bool", "default": true},
+	]
+
 func _init(swerve: SwerveSubsystem) -> void:
 	_swerve = swerve
 	require(swerve)

@@ -69,6 +69,18 @@ func get_height() -> float:
 
 func get_sync_nodes() -> Array[Node3D]:
 	return [carriage]
+
+static func build() -> Node3D:
+	var node := ElevatorSubsystem.new()
+	var carriage_node := Node3D.new()
+	carriage_node.name = "Carriage"
+	node.add_child(carriage_node)
+	node.carriage_path = NodePath("Carriage")
+	return node
+
+
+func get_mount() -> Node3D:
+	return carriage
 	
 func _setup(manager: SubsystemManager) -> void:
 	super._setup(manager)
